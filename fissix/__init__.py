@@ -19,6 +19,7 @@ def _generate_pickle_name(gt):
     head, tail = os.path.splitext(gt)
     if tail == ".txt":
         tail = ""
-    return head.split('/')[-1] + tail + __base_version__ + ".pickle"
+    return head.split("/")[-1] + tail + __base_version__ + ".pickle"
+
 
 driver._generate_pickle_name = _generate_pickle_name
