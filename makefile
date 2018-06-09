@@ -1,4 +1,5 @@
 setup:
+	python3 -m pip install -Ur requirements.txt
 	python3 -m pip install -U black
 
 dev:
@@ -32,7 +33,7 @@ lint:
 	python3 -m black --check fissix tests setup.py
 
 test:
-	python3 -m unittest tests
+	python3 -m unittest --verbose tests
 
 clean:
 	rm -rf build dist *.egg-info .venv .mypy_cache

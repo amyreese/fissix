@@ -3,6 +3,9 @@ from setuptools import setup, find_packages
 with open("README.md") as f:
     readme = f.read()
 
+with open("requirements.txt") as f:
+    requires = [line.strip() for line in f if line]
+
 with open("fissix/__init__.py") as f:
     for line in f:
         if line.startswith("__version__"):
@@ -29,6 +32,7 @@ setup(
         "Topic :: Utilities",
     ],
     license="PSF",
+    install_requires=requires,
     setup_requires=["setuptools>=38.6.0"],
     packages=find_packages(exclude=["tests", "*.tests"]),
 )
