@@ -1,4 +1,4 @@
-from setuptools import setup
+from setuptools import setup, find_packages
 
 with open("README.md") as f:
     readme = f.read()
@@ -30,5 +30,5 @@ setup(
     ],
     license="PSF License",
     setup_requires=["setuptools>=38.6.0"],
-    packages=["fissix", "fissix."],
+    packages=find_packages(exclude=["*.tests"]),
 )
