@@ -1,5 +1,5 @@
 setup:
-	python3 -m pip install -U black
+	if python3 -V | grep -v "3\.[45]"; then python3 -m pip install -U black; fi
 
 dev:
 	python3 setup.py develop
@@ -26,7 +26,7 @@ release: lint test clean
 	python3 -m twine upload dist/*
 
 lint:
-	python3 -m black --check fissix setup.py
+	if python3 -V | grep -v "3\.[45]"; then python3 -m black --check fissix setup.py; fi
 
 test:
 	true
