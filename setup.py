@@ -28,7 +28,7 @@ setup(
         "Topic :: Software Development :: Libraries",
         "Topic :: Utilities",
     ],
-    license="PSF License",
+    license="PSF",
     setup_requires=["setuptools>=38.6.0"],
     packages=find_packages(exclude=["tests", "*.tests"]),
 )
