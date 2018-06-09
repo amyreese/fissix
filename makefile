@@ -29,7 +29,7 @@ lint:
 	if python3 -V | grep -v "3\.[45]"; then python3 -m black --check fissix setup.py; fi
 
 test:
-	true
+	python3 -m unittest tests
 
 clean:
 	rm -rf build dist *.egg-info .venv .mypy_cache

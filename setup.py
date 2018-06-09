@@ -30,5 +30,5 @@ setup(
     ],
     license="PSF License",
     setup_requires=["setuptools>=38.6.0"],
-    packages=find_packages(exclude=["*.tests"]),
+    packages=find_packages(exclude=["tests", "*.tests"]),
 )
