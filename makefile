@@ -1,5 +1,6 @@
 setup:
 	python3 -m pip install -U black
+
 dev:
 	python3 setup.py develop
 
@@ -25,12 +26,10 @@ release: lint test clean
 	python3 -m twine upload dist/*
 
 lint:
-	python3 -m black --check .
-	python3 -m pylint --rcfile .pylint edi tests
-	-python3 -m mypy --python-version 3.6 .
+	python3 -m black --check fissix setup.py
 
 test:
-	python3 -m unittest tests
+	true
 
 clean:
 	rm -rf build dist *.egg-info .venv .mypy_cache
