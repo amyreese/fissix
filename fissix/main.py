@@ -269,7 +269,7 @@ def main(fixer_pkg, args=None):
     # Set up logging handler
     level = logging.DEBUG if options.verbose else logging.INFO
     logging.basicConfig(format="%(name)s: %(message)s", level=level)
-    logger = logging.getLogger("lib2to3.main")
+    logger = logging.getLogger("fissix.main")
 
     # Initialize the refactoring tool
     avail_fixes = set(refactor.get_fixers_from_package(fixer_pkg))

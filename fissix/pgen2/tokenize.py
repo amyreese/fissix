@@ -30,7 +30,7 @@ __credits__ = "GvR, ESR, Tim Peters, Thomas Wouters, Fred Drake, Skip Montanaro"
 
 import string, re
 from codecs import BOM_UTF8, lookup
-from lib2to3.pgen2.token import *
+from fissix.pgen2.token import *
 
 from . import token
 

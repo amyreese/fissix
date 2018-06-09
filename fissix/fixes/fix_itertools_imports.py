@@ -1,8 +1,8 @@
 """ Fixer for imports of itertools.(imap|ifilter|izip|ifilterfalse) """
 
 # Local imports
-from lib2to3 import fixer_base
-from lib2to3.fixer_util import BlankLine, syms, token
+from fissix import fixer_base
+from fissix.fixer_util import BlankLine, syms, token
 
 
 class FixItertoolsImports(fixer_base.BaseFix):

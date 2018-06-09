@@ -23,10 +23,10 @@ import tempfile
 import unittest
 
 # Local imports
-from lib2to3.pgen2 import driver as pgen2_driver
-from lib2to3.pgen2 import tokenize
+from fissix.pgen2 import driver as pgen2_driver
+from fissix.pgen2 import tokenize
 from ..pgen2.parse import ParseError
-from lib2to3.pygram import python_symbols as syms
+from fissix.pygram import python_symbols as syms
 
 
 class TestDriver(support.TestCase):
@@ -86,7 +86,7 @@ class TestPgen2Caching(support.TestCase):
                     sys.executable,
                     "-c",
                     """
-from lib2to3.pgen2 import driver as pgen2_driver
+from fissix.pgen2 import driver as pgen2_driver
 pgen2_driver.load_grammar(%r, save=True, force=True)
                     """
                     % (grammar_sub_copy,),

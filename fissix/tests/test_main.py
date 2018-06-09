@@ -9,7 +9,7 @@ import sys
 import tempfile
 import unittest
 
-from lib2to3 import main
+from fissix import main
 
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
@@ -34,7 +34,7 @@ class TestMain(unittest.TestCase):
         sys.stdout = out_capture
         sys.stderr = err_capture
         try:
-            return main.main("lib2to3.fixes", args)
+            return main.main("fissix.fixes", args)
         finally:
             sys.stdin = save_stdin
             sys.stdout = save_stdout

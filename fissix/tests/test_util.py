@@ -4,10 +4,10 @@
 from . import support
 
 # Local imports
-from lib2to3.pytree import Node, Leaf
-from lib2to3 import fixer_util
-from lib2to3.fixer_util import Attr, Name, Call, Comma
-from lib2to3.pgen2 import token
+from fissix.pytree import Node, Leaf
+from fissix import fixer_util
+from fissix.fixer_util import Attr, Name, Call, Comma
+from fissix.pgen2 import token
 
 
 def parse(code, strip_levels=0):

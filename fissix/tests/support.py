@@ -8,8 +8,8 @@ import os.path
 from textwrap import dedent
 
 # Local imports
-from lib2to3 import pytree, refactor
-from lib2to3.pgen2 import driver as pgen2_driver
+from fissix import pytree, refactor
+from fissix.pgen2 import driver as pgen2_driver
 
 test_dir = os.path.dirname(__file__)
 proj_dir = os.path.normpath(os.path.join(test_dir, ".."))
@@ -37,12 +37,12 @@ def reformat(string):
     return dedent(string) + "\n\n"
 
 
-def get_refactorer(fixer_pkg="lib2to3", fixers=None, options=None):
+def get_refactorer(fixer_pkg="fissix", fixers=None, options=None):
     """
     A convenience function for creating a RefactoringTool for tests.
 
     fixers is a list of fixers for the RefactoringTool to use. By default
-    "lib2to3.fixes.*" is used. options is an optional dictionary of options to
+    "fissix.fixes.*" is used. options is an optional dictionary of options to
     be passed to the RefactoringTool.
     """
     if fixers is not None:

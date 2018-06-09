@@ -4,8 +4,8 @@ Convert use of sys.exitfunc to use the atexit module.
 
 # Author: Benjamin Peterson
 
-from lib2to3 import pytree, fixer_base
-from lib2to3.fixer_util import Name, Attr, Call, Comma, Newline, syms
+from fissix import pytree, fixer_base
+from fissix.fixer_util import Name, Attr, Call, Comma, Newline, syms
 
 
 class FixExitfunc(fixer_base.BaseFix):

@@ -5,8 +5,8 @@
 # Author: Nick Edds
 
 # Local imports
-from lib2to3.fixes.fix_imports import alternates, FixImports
-from lib2to3.fixer_util import (
+from fissix.fixes.fix_imports import alternates, FixImports
+from fissix.fixer_util import (
     Name,
     Comma,
     FromImport,
