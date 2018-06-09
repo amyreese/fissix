@@ -1,5 +1,5 @@
 setup:
-	if python3 -V | grep -v "3\.[45]"; then python3 -m pip install -U black; fi
+	python3 -m pip install -U black
 
 dev:
 	python3 setup.py develop
@@ -29,7 +29,7 @@ black:
 	python3 -m black fissix tests setup.py
 
 lint:
-	if python3 -V | grep -v "3\.[45]"; then python3 -m black --check fissix tests setup.py; fi
+	python3 -m black --check fissix tests setup.py
 
 test:
 	python3 -m unittest tests
