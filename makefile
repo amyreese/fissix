@@ -1,6 +1,6 @@
 setup:
 	python3 -m pip install -Ur requirements.txt
-	python3 -m pip install -U black
+	python3 -m pip install -U black isort
 
 dev:
 	python3 setup.py develop
@@ -20,7 +20,7 @@ version:
 update: cpython version
 	git stash && git checkout base
 	rsync -av cpython/Lib/lib2to3/ fissix/
-	black --fast fissix/
+	python3 -m black --fast fissix/
 
 release: lint test clean
 	python3 setup.py sdist
@@ -28,6 +28,7 @@ release: lint test clean
 
 black:
 	python3 -m black fissix tests setup.py
+	python3 -m isort -rc fissix/__init__.py tests/ setup.py
 
 lint:
 	python3 -m black --check fissix tests setup.py
