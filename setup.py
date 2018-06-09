@@ -21,7 +21,7 @@ setup(
     author_email="john@noswap.com",
     url="https://github.com/jreese/fissix",
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
         "License :: OSI Approved :: Python Software Foundation License",
         "Operating System :: OS Independent",
