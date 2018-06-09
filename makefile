@@ -9,9 +9,10 @@ cpython:
 	git -C cpython checkout -f master
 	git -C cpython clean -xfd
 
-lib2to3: cpython
-	rsync -av cpython/Lib/lib2to3/ lib2to3/
-	black --fast lib2to3/
+update: cpython
+	git stash && git checkout base
+	rsync -av cpython/Lib/lib2to3/ fissix/
+	black --fast fissix/
 
 release: lint test clean
 	python3 setup.py sdist
