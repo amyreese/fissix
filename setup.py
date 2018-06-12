@@ -35,4 +35,5 @@ setup(
     install_requires=requires,
     setup_requires=["setuptools>=38.6.0"],
     packages=find_packages(exclude=["tests", "*.tests"]),
+    package_data={"fissix": ["*.txt"]},
 )
