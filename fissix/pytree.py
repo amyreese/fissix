@@ -47,7 +47,7 @@ class Base(object):
     # Default values for instance variables
     type = None  # int: token number (< 256) or symbol number (>= 256)
     parent = None  # Parent node pointer, or None
-    children = ()  # Tuple of subnodes
+    children = []  # List of subnodes
     was_changed = False
     was_checked = False
 
