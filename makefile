@@ -19,8 +19,13 @@ version:
 
 update: cpython version
 	git stash && git checkout base
+	git reset --hard origin/base
 	rsync -av cpython/Lib/lib2to3/ fissix/
 	python3 -m black --fast fissix/
+	git commit -am "Import lib2to3 from $$(git -C cpython describe)"
+	git checkout -f master
+	git merge base -m "Merge branch 'base' from $$(git -C cpython describe)"
+	git stash pop && git commit -am "Update base version/revision from $$(git -C cpython describe)"
 
 release: lint test clean
 	python3 setup.py sdist
