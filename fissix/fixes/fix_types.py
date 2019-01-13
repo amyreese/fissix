@@ -31,7 +31,7 @@ _TYPE_MAPPING = {
     "DictType": "dict",
     "DictionaryType": "dict",
     "EllipsisType": "type(Ellipsis)",
-    # 'FileType' : 'io.IOBase',
+    #'FileType' : 'io.IOBase',
     "FloatType": "float",
     "IntType": "int",
     "ListType": "list",
