@@ -27,7 +27,7 @@ class TokenTests(unittest.TestCase):
         self.assertEquals(x, 0, "backslash ending comment")
 
     def testPlainIntegers(self):
-        self.assertEquals(0xff, 255)
+        self.assertEquals(0xFF, 255)
         self.assertEquals(0377, 255)
         self.assertEquals(2147483647, 017777777777)
         # "0x" is not a valid literal
@@ -38,7 +38,7 @@ class TokenTests(unittest.TestCase):
             self.assertEquals(-2147483647 - 1, -020000000000)
             # XXX -2147483648
             self.assert_(037777777777 > 0)
-            self.assert_(0xffffffff > 0)
+            self.assert_(0xFFFFFFFF > 0)
             for s in "2147483648", "040000000000", "0x100000000":
                 try:
                     x = eval(s)
@@ -47,7 +47,7 @@ class TokenTests(unittest.TestCase):
         elif maxint == 9223372036854775807:
             self.assertEquals(-9223372036854775807 - 1, -01000000000000000000000)
             self.assert_(01777777777777777777777 > 0)
-            self.assert_(0xffffffffffffffff > 0)
+            self.assert_(0xFFFFFFFFFFFFFFFF > 0)
             for s in (
                 "9223372036854775808",
                 "02000000000000000000000",
@@ -62,26 +62,26 @@ class TokenTests(unittest.TestCase):
 
     def testLongIntegers(self):
         x = 0L
-        x = 0l
-        x = 0xffffffffffffffffL
-        x = 0xffffffffffffffffl
+        x = 0L
+        x = 0xFFFFFFFFFFFFFFFFL
+        x = 0xFFFFFFFFFFFFFFFFL
         x = 077777777777777777L
-        x = 077777777777777777l
+        x = 077777777777777777L
         x = 123456789012345678901234567890L
-        x = 123456789012345678901234567890l
+        x = 123456789012345678901234567890L
 
     def testFloats(self):
         x = 3.14
-        x = 314.
+        x = 314.0
         x = 0.314
         # XXX x = 000.314
-        x = .314
+        x = 0.314
         x = 3e14
-        x = 3E14
+        x = 3e14
         x = 3e-14
-        x = 3e+14
-        x = 3.e14
-        x = .3e14
+        x = 3e14
+        x = 3.0e14
+        x = 0.3e14
         x = 3.1e4
 
     def testStringLiterals(self):

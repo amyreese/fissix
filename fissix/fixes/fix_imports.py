@@ -50,7 +50,7 @@ MAPPING = {
     "BaseHTTPServer": "http.server",
     "SimpleHTTPServer": "http.server",
     "CGIHTTPServer": "http.server",
-    # 'test.test_support': 'test.support',
+    #'test.test_support': 'test.support',
     "commands": "subprocess",
     "UserString": "collections",
     "UserList": "collections",
