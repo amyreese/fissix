@@ -28,19 +28,19 @@ class TokenTests(unittest.TestCase):
 
     def testPlainIntegers(self):
         self.assertEquals(type(000), type(0))
-        self.assertEquals(0xff, 255)
+        self.assertEquals(0xFF, 255)
         self.assertEquals(0o377, 255)
-        self.assertEquals(2147483647, 0o17777777777)
+        self.assertEquals(2_147_483_647, 0o17777777777)
         self.assertEquals(0b1001, 9)
         # "0x" is not a valid literal
         self.assertRaises(SyntaxError, eval, "0x")
         from sys import maxsize
 
-        if maxsize == 2147483647:
-            self.assertEquals(-2147483647 - 1, -0o20000000000)
+        if maxsize == 2_147_483_647:
+            self.assertEquals(-2_147_483_647 - 1, -0o20000000000)
             # XXX -2147483648
             self.assert_(0o37777777777 > 0)
-            self.assert_(0xffffffff > 0)
+            self.assert_(0xFFFFFFFF > 0)
             self.assert_(0b1111111111111111111111111111111 > 0)
             for s in (
                 "2147483648",
@@ -52,10 +52,10 @@ class TokenTests(unittest.TestCase):
                     x = eval(s)
                 except OverflowError:
                     self.fail("OverflowError on huge integer literal %r" % s)
-        elif maxsize == 9223372036854775807:
-            self.assertEquals(-9223372036854775807 - 1, -0o1000000000000000000000)
+        elif maxsize == 9_223_372_036_854_775_807:
+            self.assertEquals(-9_223_372_036_854_775_807 - 1, -0o1000000000000000000000)
             self.assert_(0o1777777777777777777777 > 0)
-            self.assert_(0xffffffffffffffff > 0)
+            self.assert_(0xFFFFFFFFFFFFFFFF > 0)
             self.assert_(
                 0b11111111111111111111111111111111111111111111111111111111111111 > 0
             )
@@ -74,48 +74,48 @@ class TokenTests(unittest.TestCase):
 
     def testLongIntegers(self):
         x = 0
-        x = 0xffffffffffffffff
-        x = 0Xffffffffffffffff
+        x = 0xFFFFFFFFFFFFFFFF
+        x = 0xFFFFFFFFFFFFFFFF
         x = 0o77777777777777777
-        x = 0O77777777777777777
-        x = 123456789012345678901234567890
+        x = 0o77777777777777777
+        x = 123_456_789_012_345_678_901_234_567_890
         x = 0b100000000000000000000000000000000000000000000000000000000000000000000
-        x = 0B111111111111111111111111111111111111111111111111111111111111111111111
+        x = 0b111111111111111111111111111111111111111111111111111111111111111111111
 
     def testUnderscoresInNumbers(self):
         # Integers
-        x = 1_0
-        x = 123_456_7_89
-        x = 0xabc_123_4_5
-        x = 0X_abc_123
-        x = 0B11_01
+        x = 10
+        x = 123_456_789
+        x = 0xABC_123_4_5
+        x = 0x_ABC_123
+        x = 0b11_01
         x = 0b_11_01
         x = 0o45_67
-        x = 0O_45_67
+        x = 0o_45_67
 
         # Floats
-        x = 3_1.4
-        x = 03_1.4
-        x = 3_1.
-        x = .3_1
-        x = 3.1_4
-        x = 0_3.1_4
-        x = 3e1_4
-        x = 3_1e+4_1
-        x = 3_1E-4_1
+        x = 31.4
+        x = 031.4
+        x = 31.0
+        x = 0.31
+        x = 3.14
+        x = 03.14
+        x = 3e14
+        x = 31e41
+        x = 31e-41
 
     def testFloats(self):
         x = 3.14
-        x = 314.
+        x = 314.0
         x = 0.314
         # XXX x = 000.314
-        x = .314
+        x = 0.314
         x = 3e14
-        x = 3E14
+        x = 3e14
         x = 3e-14
-        x = 3e+14
-        x = 3.e14
-        x = .3e14
+        x = 3e14
+        x = 3.0e14
+        x = 0.3e14
         x = 3.1e4
 
     def testStringLiterals(self):
