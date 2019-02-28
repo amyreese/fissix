@@ -13,7 +13,7 @@ from appdirs import user_cache_dir
 
 from .pgen2 import driver
 
-__version__ = "19.1b1"
+__version__ = "19.2b1"
 __base_version__ = "3.8.0a2+"
 __base_revision__ = "v3.8.0a2-22-ged1deb0719"
 
