@@ -24,7 +24,7 @@ CACHE_DIR = Path(user_cache_dir("fissix", version=__version__))
 
 def _generate_pickle_name(gt):
     path = Path(gt)
-    filename = f"{path.stem}{__base_version__}.pickle"
+    filename = "{}{}.pickle".format(path.stem, __base_version__)
     CACHE_DIR.mkdir(parents=True, exist_ok=True)
     return (CACHE_DIR / filename).as_posix()
 

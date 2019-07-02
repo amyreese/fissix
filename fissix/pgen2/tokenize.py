@@ -145,20 +145,20 @@ endprogs = {
     '"': re.compile(Double),
     "'''": single3prog,
     '"""': double3prog,
-    **{f"{prefix}'''": single3prog for prefix in _strprefixes},
-    **{f'{prefix}"""': double3prog for prefix in _strprefixes},
+    **{"{}'''".format(prefix): single3prog for prefix in _strprefixes},
+    **{'{}"""'.format(prefix): double3prog for prefix in _strprefixes},
     **{prefix: None for prefix in _strprefixes},
 }
 
 triple_quoted = (
     {"'''", '"""'}
-    | {f"{prefix}'''" for prefix in _strprefixes}
-    | {f'{prefix}"""' for prefix in _strprefixes}
+    | {"{}'''".format(prefix) for prefix in _strprefixes}
+    | {'{}"""'.format(prefix) for prefix in _strprefixes}
 )
 single_quoted = (
     {"'", '"'}
-    | {f"{prefix}'" for prefix in _strprefixes}
-    | {f'{prefix}"' for prefix in _strprefixes}
+    | {"{}'".format(prefix) for prefix in _strprefixes}
+    | {'{}"'.format(prefix) for prefix in _strprefixes}
 )
 
 tabsize = 8
