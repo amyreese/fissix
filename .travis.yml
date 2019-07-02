@@ -7,15 +7,19 @@ python:
     - "3.6"
     - "3.7-dev"
 install:
-    - "make setup"
+    - "pip install -Ur requirements.txt"
     - "pip install ."
 script:
     - "make test"
 matrix:
     allow_failures:
         - python: "3.7-dev"
+
     include:
-        - python: "3.6"
+        - name: "black linting"
+          python: "3.6"
           env: LINTING=true
+          install:
+            - "pip install black"
           script:
-              - "make lint test"
+              - "make lint"
