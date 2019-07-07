@@ -3,23 +3,16 @@ from setuptools import find_packages, setup
 with open("README.md") as f:
     readme = f.read()
 
-with open("requirements.txt") as f:
-    requires = [line.strip() for line in f if line]
-
-with open("fissix/__init__.py") as f:
-    for line in f:
-        if line.startswith("__version__"):
-            version = line.split('"')[1]
 
 setup(
-    name="fissix",
+    name="fissix-py35",
     description="Backport of lib2to3, with enhancements",
     long_description=readme,
     long_description_content_type="text/markdown",
-    version=version,
+    version="19.3",
     author="John Reese",
     author_email="john@noswap.com",
-    url="https://github.com/jreese/fissix",
+    url="https://github.com/orsinium/fissix-py35",
     classifiers=[
         "Development Status :: 3 - Alpha",
         "Intended Audience :: Developers",
@@ -32,7 +25,7 @@ setup(
         "Topic :: Utilities",
     ],
     license="PSF",
-    install_requires=requires,
+    install_requires=["appdirs"],
     setup_requires=["setuptools>=38.6.0"],
     packages=find_packages(exclude=["tests", "*.tests"]),
     package_data={"fissix": ["*.txt"]},
