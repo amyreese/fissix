@@ -29,6 +29,7 @@ MAPPING = {
                 "urlcleanup",
                 "pathname2url",
                 "url2pathname",
+                "getproxies",
             ],
         ),
         (

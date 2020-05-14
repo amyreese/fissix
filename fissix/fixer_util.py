@@ -115,8 +115,8 @@ def ListComp(xp, fp, it, test=None):
         test.prefix = " "
         if_leaf = Leaf(token.NAME, "if")
         if_leaf.prefix = " "
-        inner_args.append(Node(syms.old_comp_if, [if_leaf, test]))
-    inner = Node(syms.listmaker, [xp, Node(syms.old_comp_for, inner_args)])
+        inner_args.append(Node(syms.comp_if, [if_leaf, test]))
+    inner = Node(syms.listmaker, [xp, Node(syms.comp_for, inner_args)])
     return Node(syms.atom, [Leaf(token.LBRACE, "["), inner, Leaf(token.RBRACE, "]")])
 
 
@@ -247,7 +247,7 @@ def attr_chain(obj, attr):
 
 
 p0 = """for_stmt< 'for' any 'in' node=any ':' any* >
-        | old_comp_for< 'for' any 'in' node=any any* >
+        | comp_for< 'for' any 'in' node=any any* >
      """
 p1 = """
 power<
@@ -481,7 +481,7 @@ def _find(name, node):
 
 
 def _is_import_binding(node, name, package=None):
-    """ Will reuturn node if node will import name, or node
+    """ Will return node if node will import name, or node
         will import * from package.  None is returned otherwise.
         See test cases for examples. """
 

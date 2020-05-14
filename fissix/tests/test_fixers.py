@@ -295,30 +295,30 @@ class Test_reload(FixerTestCase):
 
     def test(self):
         b = """reload(a)"""
-        a = """import imp\nimp.reload(a)"""
+        a = """import importlib\nimportlib.reload(a)"""
         self.check(b, a)
 
     def test_comment(self):
         b = """reload( a ) # comment"""
-        a = """import imp\nimp.reload( a ) # comment"""
+        a = """import importlib\nimportlib.reload( a ) # comment"""
         self.check(b, a)
 
         # PEP 8 comments
         b = """reload( a )  # comment"""
-        a = """import imp\nimp.reload( a )  # comment"""
+        a = """import importlib\nimportlib.reload( a )  # comment"""
         self.check(b, a)
 
     def test_space(self):
         b = """reload( a )"""
-        a = """import imp\nimp.reload( a )"""
+        a = """import importlib\nimportlib.reload( a )"""
         self.check(b, a)
 
         b = """reload( a)"""
-        a = """import imp\nimp.reload( a)"""
+        a = """import importlib\nimportlib.reload( a)"""
         self.check(b, a)
 
         b = """reload(a )"""
-        a = """import imp\nimp.reload(a )"""
+        a = """import importlib\nimportlib.reload(a )"""
         self.check(b, a)
 
     def test_unchanged(self):
@@ -1213,36 +1213,36 @@ class Test_execfile(FixerTestCase):
 
     def test_conversion(self):
         b = """execfile("fn")"""
-        a = """exec(compile(open("fn").read(), "fn", 'exec'))"""
+        a = """exec(compile(open("fn", "rb").read(), "fn", 'exec'))"""
         self.check(b, a)
 
         b = """execfile("fn", glob)"""
-        a = """exec(compile(open("fn").read(), "fn", 'exec'), glob)"""
+        a = """exec(compile(open("fn", "rb").read(), "fn", 'exec'), glob)"""
         self.check(b, a)
 
         b = """execfile("fn", glob, loc)"""
-        a = """exec(compile(open("fn").read(), "fn", 'exec'), glob, loc)"""
+        a = """exec(compile(open("fn", "rb").read(), "fn", 'exec'), glob, loc)"""
         self.check(b, a)
 
         b = """execfile("fn", globals=glob)"""
-        a = """exec(compile(open("fn").read(), "fn", 'exec'), globals=glob)"""
+        a = """exec(compile(open("fn", "rb").read(), "fn", 'exec'), globals=glob)"""
         self.check(b, a)
 
         b = """execfile("fn", locals=loc)"""
-        a = """exec(compile(open("fn").read(), "fn", 'exec'), locals=loc)"""
+        a = """exec(compile(open("fn", "rb").read(), "fn", 'exec'), locals=loc)"""
         self.check(b, a)
 
         b = """execfile("fn", globals=glob, locals=loc)"""
-        a = """exec(compile(open("fn").read(), "fn", 'exec'), globals=glob, locals=loc)"""
+        a = """exec(compile(open("fn", "rb").read(), "fn", 'exec'), globals=glob, locals=loc)"""
         self.check(b, a)
 
     def test_spacing(self):
         b = """execfile( "fn" )"""
-        a = """exec(compile(open( "fn" ).read(), "fn", 'exec'))"""
+        a = """exec(compile(open( "fn", "rb" ).read(), "fn", 'exec'))"""
         self.check(b, a)
 
         b = """execfile("fn",  globals = glob)"""
-        a = """exec(compile(open("fn").read(), "fn", 'exec'),  globals = glob)"""
+        a = """exec(compile(open("fn", "rb").read(), "fn", 'exec'),  globals = glob)"""
         self.check(b, a)
 
 
@@ -1960,6 +1960,12 @@ def foo():
     from urllib.parse import urlencode
     from urllib.request import urlopen
 """
+        self.check(b, a)
+
+    def test_single_import(self):
+        b = "from urllib import getproxies"
+        a = "from urllib.request import getproxies"
+
         self.check(b, a)
 
     def test_import_module_usage(self):
@@ -2874,7 +2880,9 @@ class Test_numliterals(FixerTestCase):
 class Test_renames(FixerTestCase):
     fixer = "renames"
 
-    modules = {"sys": ("maxint", "maxsize")}
+    modules = {
+        "sys": ("maxint", "maxsize"),
+    }
 
     def test_import_from(self):
         for mod, (old, new) in list(self.modules.items()):
@@ -3044,6 +3052,11 @@ class Test_filter(FixerTestCase):
         # Note the parens around x
         b = """x = filter(lambda (x): x%2 == 0, range(10))"""
         a = """x = [x for x in range(10) if x%2 == 0]"""
+        self.check(b, a)
+
+        # bpo-38871
+        b = """filter(lambda x: True if x > 2 else False, [1, 2, 3])"""
+        a = """[x for x in [1, 2, 3] if (True if x > 2 else False)]"""
         self.check(b, a)
 
     def test_filter_trailers(self):
