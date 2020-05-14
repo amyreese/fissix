@@ -3,7 +3,7 @@
 	.venv/bin/python -m pip install -U pip
 	.venv/bin/python -m pip install -r requirements.txt
 	.venv/bin/python -m pip install -r requirements-dev.txt
-	.venv/bin/python -m pip install -e .
+	.venv/bin/python -m flit install --symlink
 
 .PHONY: cpython
 cpython:
@@ -20,8 +20,7 @@ update: .venv
 	scripts/update.sh
 
 release: lint test clean
-	python setup.py sdist
-	.venv/bin/python -m twine upload dist/*
+	flit publish
 
 black: .venv
 	.venv/bin/python -m black fissix tests setup.py

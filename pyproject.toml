@@ -1,0 +1,29 @@
+[build-system]
+requires = ["flit_core >=2,<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.metadata]
+module = "fissix"
+author = "John Reese"
+author-email = "john@noswap.com"
+description-file = "README.md"
+home-page = "https://github.com/jreese/fissix"
+requires = ["appdirs"]
+requires-python = ">=3.6"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Python Software Foundation License",
+    "Topic :: Software Development :: Libraries",
+]
+
+[tool.flit.sdist]
+include = [
+    "fissix/*.txt",
+]
+exclude = [
+    ".github/",
+    "cpython/",
+    "scripts/",
+    "tests/",
+]
