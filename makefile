@@ -1,9 +1,11 @@
 .venv:
 	python -m venv .venv
-	.venv/bin/python -m pip install -U pip
-	.venv/bin/python -m pip install -r requirements.txt
-	.venv/bin/python -m pip install -r requirements-dev.txt
-	.venv/bin/python -m flit install --symlink
+	source .venv/bin/activate && make setup
+
+setup:
+	python -m pip install -r requirements.txt
+	python -m pip install -r requirements-dev.txt
+	python -m flit install --symlink
 
 .PHONY: cpython
 cpython:
@@ -22,15 +24,15 @@ update: .venv
 release: lint test clean
 	flit publish
 
-black: .venv
-	.venv/bin/python -m black fissix tests setup.py
-	.venv/bin/python -m isort -rc fissix/__init__.py tests/ setup.py
+black:
+	python -m black fissix tests setup.py
+	python -m isort -rc fissix/__init__.py tests/ setup.py
 
-lint: .venv
-	.venv/bin/python -m black --check fissix tests setup.py
+lint:
+	python -m black --check fissix tests setup.py
 
-test: .venv
-	.venv/bin/python -m unittest --verbose tests
+test:
+	python -m unittest --verbose tests
 
 clean:
 	rm -rf build dist *.egg-info .venv .mypy_cache

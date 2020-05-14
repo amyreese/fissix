@@ -27,8 +27,8 @@ jobs:
         uses: actions/setup-python@v1
         with:
           python-version: ${{ matrix.python-version }}
-      - name: Virtualenv
-        run: make .venv
+      - name: Install
+        run: make setup
       - name: Test
         run: make test
       - name: Lint
