@@ -7,6 +7,10 @@ on:
       - v*
   pull_request:
 
+defaults:
+  run:
+    shell: bash
+
 jobs:
   fissix:
     runs-on: ${{ matrix.os }}
