@@ -25,11 +25,11 @@ release: lint test clean
 	flit publish
 
 black:
-	python -m black fissix tests setup.py
-	python -m isort -rc fissix/__init__.py tests/ setup.py
+	python -m black fissix tests
+	python -m isort -rc fissix/__init__.py tests/
 
 lint:
-	python -m black --check fissix tests setup.py
+	python -m black --check fissix tests
 
 test:
 	python -m unittest --verbose tests
