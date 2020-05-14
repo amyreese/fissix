@@ -21,5 +21,8 @@ from foo import bar
 
 value = 123
 print(bar(f"123"))
+
+if new_value := some_func(value):
+    value = new_value
         """
         tree = self.driver.parse_string(code)
