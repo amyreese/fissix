@@ -10,6 +10,7 @@ __pycache__/
 *.so
 
 # Distribution / packaging
+.python-version
 .venv/
 .Python
 .python-version
