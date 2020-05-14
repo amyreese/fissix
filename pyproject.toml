@@ -27,3 +27,7 @@ exclude = [
     "scripts/",
     "tests/",
 ]
+
+[tool.black]
+# try to remove this after future black updates
+exclude = "py3_test_grammar.py"
