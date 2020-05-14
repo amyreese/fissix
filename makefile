@@ -16,15 +16,8 @@ version:
 	scripts/version.sh
 
 .PHONY: update
-update: .venv cpython version
-	git stash && git checkout base
-	git reset --hard origin/base
-	rsync -av cpython/Lib/lib2to3/ fissix/
-	-.venv/bin/python -m black --fast fissix/
-	git commit -am "Import lib2to3 from $$(git -C cpython describe)"
-	git checkout -f master
-	git merge base -m "Merge branch 'base' from $$(git -C cpython describe)"
-	git stash pop && git commit -am "Update base version/revision from $$(git -C cpython describe)"
+update: .venv
+	scripts/update.sh
 
 release: lint test clean
 	python setup.py sdist
