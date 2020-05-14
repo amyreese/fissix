@@ -16,8 +16,8 @@ from appdirs import user_cache_dir
 from .pgen2 import driver, grammar, pgen
 
 __version__ = "19.2b1"
-__base_version__ = "3.8.0a2+"
-__base_revision__ = "v3.8.0a2-22-ged1deb0719"
+__base_version__ = "3.9.0a6+"
+__base_revision__ = "v3.9.0a5-508-g7443d42021"
 
 CACHE_DIR = Path(user_cache_dir("fissix", version=__version__))
 

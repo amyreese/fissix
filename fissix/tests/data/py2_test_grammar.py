@@ -180,7 +180,13 @@ class GrammarTests(unittest.TestCase):
         if sys.platform.startswith("java"):
             self.assertEquals(
                 f4.func_code.co_varnames,
-                ("two", "(compound, (argument, list))", "compound", "argument", "list"),
+                (
+                    "two",
+                    "(compound, (argument, list))",
+                    "compound",
+                    "argument",
+                    "list",
+                ),
             )
             self.assertEquals(
                 f5.func_code.co_varnames,
@@ -197,7 +203,9 @@ class GrammarTests(unittest.TestCase):
         def a1(one_arg,):
             pass
 
-        def a2(two, args):
+        def a2(
+            two, args,
+        ):
             pass
 
         def v0(*rest):
@@ -214,17 +222,19 @@ class GrammarTests(unittest.TestCase):
 
         f1()
         f2(1)
-        f2(1)
+        f2(1,)
         f3(1, 2)
-        f3(1, 2)
+        f3(
+            1, 2,
+        )
         f4(1, (2, (3, 4)))
         v0()
         v0(1)
-        v0(1)
+        v0(1,)
         v0(1, 2)
         v0(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
         v1(1)
-        v1(1)
+        v1(1,)
         v1(1, 2)
         v1(1, 2, 3)
         v1(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
@@ -613,7 +623,10 @@ hello world
         # from sys import *
         from sys import path, argv
         from sys import path, argv
-        from sys import path, argv
+        from sys import (
+            path,
+            argv,
+        )
 
     def testGlobal(self):
         # 'global' NAME (',' NAME)*
@@ -933,10 +946,15 @@ hello world
 
         x = {}
         x = {"one": 1}
-        x = {"one": 1}
+        x = {
+            "one": 1,
+        }
         x = {"one" or "two": 1 or 2}
         x = {"one": 1, "two": 2}
-        x = {"one": 1, "two": 2}
+        x = {
+            "one": 1,
+            "two": 2,
+        }
         x = {"one": 1, "two": 2, "three": 3, "four": 4, "five": 5, "six": 6}
 
         x = ` x `

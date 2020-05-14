@@ -481,7 +481,7 @@ def _find(name, node):
 
 
 def _is_import_binding(node, name, package=None):
-    """ Will reuturn node if node will import name, or node
+    """ Will return node if node will import name, or node
         will import * from package.  None is returned otherwise.
         See test cases for examples. """
 

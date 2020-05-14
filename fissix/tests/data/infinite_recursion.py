@@ -38,7 +38,10 @@ class __mbstate_t(Union):
 
 
 __mbstate_t._pack_ = 4
-__mbstate_t._fields_ = [("__mbstate8", c_char * 128), ("_mbstateL", c_longlong)]
+__mbstate_t._fields_ = [
+    ("__mbstate8", c_char * 128),
+    ("_mbstateL", c_longlong),
+]
 assert sizeof(__mbstate_t) == 128, sizeof(__mbstate_t)
 assert alignment(__mbstate_t) == 4, alignment(__mbstate_t)
 __darwin_mbstate_t = __mbstate_t
@@ -101,7 +104,10 @@ class aes_key_st(Structure):
     pass
 
 
-aes_key_st._fields_ = [("rd_key", c_ulong * 60), ("rounds", c_int)]
+aes_key_st._fields_ = [
+    ("rd_key", c_ulong * 60),
+    ("rounds", c_int),
+]
 assert sizeof(aes_key_st) == 244, sizeof(aes_key_st)
 assert alignment(aes_key_st) == 4, alignment(aes_key_st)
 AES_KEY = aes_key_st
@@ -271,7 +277,10 @@ N12asn1_type_st4DOLLAR_11E._fields_ = [
 ]
 assert sizeof(N12asn1_type_st4DOLLAR_11E) == 4, sizeof(N12asn1_type_st4DOLLAR_11E)
 assert alignment(N12asn1_type_st4DOLLAR_11E) == 4, alignment(N12asn1_type_st4DOLLAR_11E)
-asn1_type_st._fields_ = [("type", c_int), ("value", N12asn1_type_st4DOLLAR_11E)]
+asn1_type_st._fields_ = [
+    ("type", c_int),
+    ("value", N12asn1_type_st4DOLLAR_11E),
+]
 assert sizeof(asn1_type_st) == 8, sizeof(asn1_type_st)
 assert alignment(asn1_type_st) == 4, alignment(asn1_type_st)
 ASN1_TYPE = asn1_type_st
@@ -358,7 +367,10 @@ class stack_st(Structure):
 
 
 STACK = stack_st
-crypto_ex_data_st._fields_ = [("sk", POINTER(STACK)), ("dummy", c_int)]
+crypto_ex_data_st._fields_ = [
+    ("sk", POINTER(STACK)),
+    ("dummy", c_int),
+]
 assert sizeof(crypto_ex_data_st) == 8, sizeof(crypto_ex_data_st)
 assert alignment(crypto_ex_data_st) == 4, alignment(crypto_ex_data_st)
 CRYPTO_EX_DATA = crypto_ex_data_st
@@ -416,7 +428,10 @@ class bf_key_st(Structure):
     pass
 
 
-bf_key_st._fields_ = [("P", c_uint * 18), ("S", c_uint * 1024)]
+bf_key_st._fields_ = [
+    ("P", c_uint * 18),
+    ("S", c_uint * 1024),
+]
 assert sizeof(bf_key_st) == 4168, sizeof(bf_key_st)
 assert alignment(bf_key_st) == 4, alignment(bf_key_st)
 BF_KEY = bf_key_st
@@ -499,7 +514,11 @@ class buf_mem_st(Structure):
     pass
 
 
-buf_mem_st._fields_ = [("length", c_int), ("data", STRING), ("max", c_int)]
+buf_mem_st._fields_ = [
+    ("length", c_int),
+    ("data", STRING),
+    ("max", c_int),
+]
 assert sizeof(buf_mem_st) == 12, sizeof(buf_mem_st)
 assert alignment(buf_mem_st) == 4, alignment(buf_mem_st)
 BUF_MEM = buf_mem_st
@@ -509,7 +528,10 @@ class cast_key_st(Structure):
     pass
 
 
-cast_key_st._fields_ = [("data", c_ulong * 32), ("short_key", c_int)]
+cast_key_st._fields_ = [
+    ("data", c_ulong * 32),
+    ("short_key", c_int),
+]
 assert sizeof(cast_key_st) == 132, sizeof(cast_key_st)
 assert alignment(cast_key_st) == 4, alignment(cast_key_st)
 CAST_KEY = cast_key_st
@@ -621,10 +643,15 @@ class N6DES_ks3DOLLAR_9E(Union):
     pass
 
 
-N6DES_ks3DOLLAR_9E._fields_ = [("cblock", DES_cblock), ("deslong", c_ulong * 2)]
+N6DES_ks3DOLLAR_9E._fields_ = [
+    ("cblock", DES_cblock),
+    ("deslong", c_ulong * 2),
+]
 assert sizeof(N6DES_ks3DOLLAR_9E) == 8, sizeof(N6DES_ks3DOLLAR_9E)
 assert alignment(N6DES_ks3DOLLAR_9E) == 4, alignment(N6DES_ks3DOLLAR_9E)
-DES_ks._fields_ = [("ks", N6DES_ks3DOLLAR_9E * 16)]
+DES_ks._fields_ = [
+    ("ks", N6DES_ks3DOLLAR_9E * 16),
+]
 assert sizeof(DES_ks) == 128, sizeof(DES_ks)
 assert alignment(DES_ks) == 4, alignment(DES_ks)
 DES_key_schedule = DES_ks
@@ -649,7 +676,9 @@ assert sizeof(N23_ossl_old_des_ks_struct4DOLLAR_10E) == 8, sizeof(
 assert alignment(N23_ossl_old_des_ks_struct4DOLLAR_10E) == 4, alignment(
     N23_ossl_old_des_ks_struct4DOLLAR_10E
 )
-_ossl_old_des_ks_struct._fields_ = [("ks", N23_ossl_old_des_ks_struct4DOLLAR_10E)]
+_ossl_old_des_ks_struct._fields_ = [
+    ("ks", N23_ossl_old_des_ks_struct4DOLLAR_10E),
+]
 assert sizeof(_ossl_old_des_ks_struct) == 8, sizeof(_ossl_old_des_ks_struct)
 assert alignment(_ossl_old_des_ks_struct) == 4, alignment(_ossl_old_des_ks_struct)
 _ossl_old_des_key_schedule = _ossl_old_des_ks_struct * 16
@@ -733,7 +762,10 @@ class DSA_SIG_st(Structure):
     pass
 
 
-DSA_SIG_st._fields_ = [("r", POINTER(BIGNUM)), ("s", POINTER(BIGNUM))]
+DSA_SIG_st._fields_ = [
+    ("r", POINTER(BIGNUM)),
+    ("s", POINTER(BIGNUM)),
+]
 assert sizeof(DSA_SIG_st) == 8, sizeof(DSA_SIG_st)
 assert alignment(DSA_SIG_st) == 4, alignment(DSA_SIG_st)
 DSA_SIG = DSA_SIG_st
@@ -937,7 +969,10 @@ class evp_cipher_info_st(Structure):
 
 
 EVP_CIPHER = evp_cipher_st
-evp_cipher_info_st._fields_ = [("cipher", POINTER(EVP_CIPHER)), ("iv", c_ubyte * 16)]
+evp_cipher_info_st._fields_ = [
+    ("cipher", POINTER(EVP_CIPHER)),
+    ("iv", c_ubyte * 16),
+]
 assert sizeof(evp_cipher_info_st) == 20, sizeof(evp_cipher_info_st)
 assert alignment(evp_cipher_info_st) == 4, alignment(evp_cipher_info_st)
 EVP_CIPHER_INFO = evp_cipher_info_st
@@ -1208,7 +1243,10 @@ class N10pem_ctx_st4DOLLAR_16E(Structure):
     pass
 
 
-N10pem_ctx_st4DOLLAR_16E._fields_ = [("version", c_int), ("mode", c_int)]
+N10pem_ctx_st4DOLLAR_16E._fields_ = [
+    ("version", c_int),
+    ("mode", c_int),
+]
 assert sizeof(N10pem_ctx_st4DOLLAR_16E) == 8, sizeof(N10pem_ctx_st4DOLLAR_16E)
 assert alignment(N10pem_ctx_st4DOLLAR_16E) == 4, alignment(N10pem_ctx_st4DOLLAR_16E)
 
@@ -1217,7 +1255,9 @@ class N10pem_ctx_st4DOLLAR_17E(Structure):
     pass
 
 
-N10pem_ctx_st4DOLLAR_17E._fields_ = [("cipher", c_int)]
+N10pem_ctx_st4DOLLAR_17E._fields_ = [
+    ("cipher", c_int),
+]
 assert sizeof(N10pem_ctx_st4DOLLAR_17E) == 4, sizeof(N10pem_ctx_st4DOLLAR_17E)
 assert alignment(N10pem_ctx_st4DOLLAR_17E) == 4, alignment(N10pem_ctx_st4DOLLAR_17E)
 pem_ctx_st._fields_ = [
@@ -1425,7 +1465,9 @@ class rc2_key_st(Structure):
     pass
 
 
-rc2_key_st._fields_ = [("data", c_uint * 64)]
+rc2_key_st._fields_ = [
+    ("data", c_uint * 64),
+]
 assert sizeof(rc2_key_st) == 256, sizeof(rc2_key_st)
 assert alignment(rc2_key_st) == 4, alignment(rc2_key_st)
 RC2_KEY = rc2_key_st
@@ -1435,7 +1477,11 @@ class rc4_key_st(Structure):
     pass
 
 
-rc4_key_st._fields_ = [("x", c_ubyte), ("y", c_ubyte), ("data", c_ubyte * 256)]
+rc4_key_st._fields_ = [
+    ("x", c_ubyte),
+    ("y", c_ubyte),
+    ("data", c_ubyte * 256),
+]
 assert sizeof(rc4_key_st) == 258, sizeof(rc4_key_st)
 assert alignment(rc4_key_st) == 1, alignment(rc4_key_st)
 RC4_KEY = rc4_key_st
@@ -1445,7 +1491,10 @@ class rc5_key_st(Structure):
     pass
 
 
-rc5_key_st._fields_ = [("rounds", c_int), ("data", c_ulong * 34)]
+rc5_key_st._fields_ = [
+    ("rounds", c_int),
+    ("data", c_ulong * 34),
+]
 assert sizeof(rc5_key_st) == 140, sizeof(rc5_key_st)
 assert alignment(rc5_key_st) == 4, alignment(rc5_key_st)
 RC5_32_KEY = rc5_key_st
@@ -2567,7 +2616,10 @@ assert sizeof(N14x509_object_st4DOLLAR_14E) == 4, sizeof(N14x509_object_st4DOLLA
 assert alignment(N14x509_object_st4DOLLAR_14E) == 4, alignment(
     N14x509_object_st4DOLLAR_14E
 )
-x509_object_st._fields_ = [("type", c_int), ("data", N14x509_object_st4DOLLAR_14E)]
+x509_object_st._fields_ = [
+    ("type", c_int),
+    ("data", N14x509_object_st4DOLLAR_14E),
+]
 assert sizeof(x509_object_st) == 8, sizeof(x509_object_st)
 assert alignment(x509_object_st) == 4, alignment(x509_object_st)
 X509_OBJECT = x509_object_st
@@ -2737,7 +2789,10 @@ class __sbuf(Structure):
     pass
 
 
-__sbuf._fields_ = [("_base", POINTER(c_ubyte)), ("_size", c_int)]
+__sbuf._fields_ = [
+    ("_base", POINTER(c_ubyte)),
+    ("_size", c_int),
+]
 assert sizeof(__sbuf) == 8, sizeof(__sbuf)
 assert alignment(__sbuf) == 4, alignment(__sbuf)
 
@@ -2787,7 +2842,10 @@ class div_t(Structure):
     pass
 
 
-div_t._fields_ = [("quot", c_int), ("rem", c_int)]
+div_t._fields_ = [
+    ("quot", c_int),
+    ("rem", c_int),
+]
 assert sizeof(div_t) == 8, sizeof(div_t)
 assert alignment(div_t) == 4, alignment(div_t)
 
@@ -2796,7 +2854,10 @@ class ldiv_t(Structure):
     pass
 
 
-ldiv_t._fields_ = [("quot", c_long), ("rem", c_long)]
+ldiv_t._fields_ = [
+    ("quot", c_long),
+    ("rem", c_long),
+]
 assert sizeof(ldiv_t) == 8, sizeof(ldiv_t)
 assert alignment(ldiv_t) == 4, alignment(ldiv_t)
 
@@ -2806,7 +2867,10 @@ class lldiv_t(Structure):
 
 
 lldiv_t._pack_ = 4
-lldiv_t._fields_ = [("quot", c_longlong), ("rem", c_longlong)]
+lldiv_t._fields_ = [
+    ("quot", c_longlong),
+    ("rem", c_longlong),
+]
 assert sizeof(lldiv_t) == 16, sizeof(lldiv_t)
 assert alignment(lldiv_t) == 4, alignment(lldiv_t)
 __darwin_dev_t = __int32_t
@@ -2848,7 +2912,10 @@ class _opaque_pthread_attr_t(Structure):
     pass
 
 
-_opaque_pthread_attr_t._fields_ = [("__sig", c_long), ("__opaque", c_char * 36)]
+_opaque_pthread_attr_t._fields_ = [
+    ("__sig", c_long),
+    ("__opaque", c_char * 36),
+]
 assert sizeof(_opaque_pthread_attr_t) == 40, sizeof(_opaque_pthread_attr_t)
 assert alignment(_opaque_pthread_attr_t) == 4, alignment(_opaque_pthread_attr_t)
 
@@ -2857,7 +2924,10 @@ class _opaque_pthread_cond_t(Structure):
     pass
 
 
-_opaque_pthread_cond_t._fields_ = [("__sig", c_long), ("__opaque", c_char * 24)]
+_opaque_pthread_cond_t._fields_ = [
+    ("__sig", c_long),
+    ("__opaque", c_char * 24),
+]
 assert sizeof(_opaque_pthread_cond_t) == 28, sizeof(_opaque_pthread_cond_t)
 assert alignment(_opaque_pthread_cond_t) == 4, alignment(_opaque_pthread_cond_t)
 
@@ -2866,7 +2936,10 @@ class _opaque_pthread_condattr_t(Structure):
     pass
 
 
-_opaque_pthread_condattr_t._fields_ = [("__sig", c_long), ("__opaque", c_char * 4)]
+_opaque_pthread_condattr_t._fields_ = [
+    ("__sig", c_long),
+    ("__opaque", c_char * 4),
+]
 assert sizeof(_opaque_pthread_condattr_t) == 8, sizeof(_opaque_pthread_condattr_t)
 assert alignment(_opaque_pthread_condattr_t) == 4, alignment(_opaque_pthread_condattr_t)
 
@@ -2875,7 +2948,10 @@ class _opaque_pthread_mutex_t(Structure):
     pass
 
 
-_opaque_pthread_mutex_t._fields_ = [("__sig", c_long), ("__opaque", c_char * 40)]
+_opaque_pthread_mutex_t._fields_ = [
+    ("__sig", c_long),
+    ("__opaque", c_char * 40),
+]
 assert sizeof(_opaque_pthread_mutex_t) == 44, sizeof(_opaque_pthread_mutex_t)
 assert alignment(_opaque_pthread_mutex_t) == 4, alignment(_opaque_pthread_mutex_t)
 
@@ -2884,7 +2960,10 @@ class _opaque_pthread_mutexattr_t(Structure):
     pass
 
 
-_opaque_pthread_mutexattr_t._fields_ = [("__sig", c_long), ("__opaque", c_char * 8)]
+_opaque_pthread_mutexattr_t._fields_ = [
+    ("__sig", c_long),
+    ("__opaque", c_char * 8),
+]
 assert sizeof(_opaque_pthread_mutexattr_t) == 12, sizeof(_opaque_pthread_mutexattr_t)
 assert alignment(_opaque_pthread_mutexattr_t) == 4, alignment(
     _opaque_pthread_mutexattr_t
@@ -2895,7 +2974,10 @@ class _opaque_pthread_once_t(Structure):
     pass
 
 
-_opaque_pthread_once_t._fields_ = [("__sig", c_long), ("__opaque", c_char * 4)]
+_opaque_pthread_once_t._fields_ = [
+    ("__sig", c_long),
+    ("__opaque", c_char * 4),
+]
 assert sizeof(_opaque_pthread_once_t) == 8, sizeof(_opaque_pthread_once_t)
 assert alignment(_opaque_pthread_once_t) == 4, alignment(_opaque_pthread_once_t)
 
@@ -2904,7 +2986,10 @@ class _opaque_pthread_rwlock_t(Structure):
     pass
 
 
-_opaque_pthread_rwlock_t._fields_ = [("__sig", c_long), ("__opaque", c_char * 124)]
+_opaque_pthread_rwlock_t._fields_ = [
+    ("__sig", c_long),
+    ("__opaque", c_char * 124),
+]
 assert sizeof(_opaque_pthread_rwlock_t) == 128, sizeof(_opaque_pthread_rwlock_t)
 assert alignment(_opaque_pthread_rwlock_t) == 4, alignment(_opaque_pthread_rwlock_t)
 
@@ -2913,7 +2998,10 @@ class _opaque_pthread_rwlockattr_t(Structure):
     pass
 
 
-_opaque_pthread_rwlockattr_t._fields_ = [("__sig", c_long), ("__opaque", c_char * 12)]
+_opaque_pthread_rwlockattr_t._fields_ = [
+    ("__sig", c_long),
+    ("__opaque", c_char * 12),
+]
 assert sizeof(_opaque_pthread_rwlockattr_t) == 16, sizeof(_opaque_pthread_rwlockattr_t)
 assert alignment(_opaque_pthread_rwlockattr_t) == 4, alignment(
     _opaque_pthread_rwlockattr_t
@@ -3012,7 +3100,10 @@ class timeval(Structure):
     pass
 
 
-timeval._fields_ = [("tv_sec", __darwin_time_t), ("tv_usec", __darwin_suseconds_t)]
+timeval._fields_ = [
+    ("tv_sec", __darwin_time_t),
+    ("tv_usec", __darwin_suseconds_t),
+]
 assert sizeof(timeval) == 8, sizeof(timeval)
 assert alignment(timeval) == 4, alignment(timeval)
 rlim_t = __int64_t
@@ -3049,7 +3140,10 @@ class rlimit(Structure):
 
 
 rlimit._pack_ = 4
-rlimit._fields_ = [("rlim_cur", rlim_t), ("rlim_max", rlim_t)]
+rlimit._fields_ = [
+    ("rlim_cur", rlim_t),
+    ("rlim_max", rlim_t),
+]
 assert sizeof(rlimit) == 16, sizeof(rlimit)
 assert alignment(rlimit) == 4, alignment(rlimit)
 mcontext_t = __darwin_mcontext_t
@@ -3065,7 +3159,10 @@ class sigval(Union):
     pass
 
 
-sigval._fields_ = [("sival_int", c_int), ("sival_ptr", c_void_p)]
+sigval._fields_ = [
+    ("sival_int", c_int),
+    ("sival_ptr", c_void_p),
+]
 assert sizeof(sigval) == 4, sizeof(sigval)
 assert alignment(sigval) == 4, alignment(sigval)
 
@@ -3165,7 +3262,10 @@ class sigstack(Structure):
     pass
 
 
-sigstack._fields_ = [("ss_sp", STRING), ("ss_onstack", c_int)]
+sigstack._fields_ = [
+    ("ss_sp", STRING),
+    ("ss_onstack", c_int),
+]
 assert sizeof(sigstack) == 8, sizeof(sigstack)
 assert alignment(sigstack) == 4, alignment(sigstack)
 u_char = c_ubyte
@@ -3202,7 +3302,9 @@ class fd_set(Structure):
     pass
 
 
-fd_set._fields_ = [("fds_bits", __int32_t * 32)]
+fd_set._fields_ = [
+    ("fds_bits", __int32_t * 32),
+]
 assert sizeof(fd_set) == 128, sizeof(fd_set)
 assert alignment(fd_set) == 4, alignment(fd_set)
 pthread_cond_t = __darwin_pthread_cond_t
@@ -3264,7 +3366,10 @@ class timespec(Structure):
     pass
 
 
-timespec._fields_ = [("tv_sec", time_t), ("tv_nsec", c_long)]
+timespec._fields_ = [
+    ("tv_sec", time_t),
+    ("tv_nsec", c_long),
+]
 assert sizeof(timespec) == 8, sizeof(timespec)
 assert alignment(timespec) == 4, alignment(timespec)
 
