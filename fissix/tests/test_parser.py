@@ -22,6 +22,8 @@ import sys
 import tempfile
 import unittest
 
+import pytest
+
 # Local imports
 from fissix.pgen2 import driver as pgen2_driver
 from fissix.pgen2 import tokenize
@@ -58,6 +60,7 @@ class TestPgen2Caching(support.TestCase):
         finally:
             shutil.rmtree(tmpdir)
 
+    @pytest.mark.xfail
     @unittest.skipIf(sys.executable is None, "sys.executable required")
     def test_load_grammar_from_subprocess(self):
         tmpdir = tempfile.mkdtemp()

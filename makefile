@@ -32,7 +32,7 @@ lint:
 	python -m black --check fissix tests
 
 test:
-	python -m unittest --verbose tests
+	python -m pytest --verbose tests fissix/tests
 
 clean:
 	rm -rf build dist *.egg-info .venv .mypy_cache
