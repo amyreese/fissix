@@ -3158,6 +3158,10 @@ class Test_map(FixerTestCase):
         a = """x = list(map(f, 'abc'))[0][1]"""
         self.check(b, a)
 
+        b = """x = set(map(f, 'abc')[0])"""
+        a = """x = set(list(map(f, 'abc'))[0])"""
+        self.check(b, a)
+
     def test_trailing_comment(self):
         b = """x = map(f, 'abc')   #   foo"""
         a = """x = list(map(f, 'abc'))   #   foo"""
