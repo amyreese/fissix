@@ -17,3 +17,9 @@ I am providing code in this repository to you under an open source license.
 Because this is my personal repository, the license you receive to my code
 is from me and not from my employer.
 See the ``LICENSE`` file for details.
+
+Used by
+-------
+
+* https://pypi.org/project/bowler/ Safe code refactoring for modern Python projects
+* https://pypi.org/project/modernize/ A hack on top of fissix for modernizing code for hybrid codebases.
