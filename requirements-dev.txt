@@ -1,4 +1,4 @@
 black
 flit
 isort
-pytest
+pytest>=6.0.1
