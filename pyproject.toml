@@ -31,3 +31,9 @@ exclude = [
 [tool.black]
 # try to remove this after future black updates
 exclude = "py3_test_grammar.py"
+
+[tool.pytest.ini_options]
+minversion = "6.0"
+xfail_strict=true
+addopts = "--strict-markers --strict-config"
+filterwarnings = ["error"]
