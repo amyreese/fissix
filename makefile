@@ -2,6 +2,8 @@
 	python -m venv .venv
 	source .venv/bin/activate && make setup
 
+venv: .venv
+
 setup:
 	python -m pip install -r requirements.txt
 	python -m pip install -r requirements-dev.txt
@@ -35,4 +37,7 @@ test:
 	python -m pytest --verbose tests fissix/tests
 
 clean:
-	rm -rf build dist *.egg-info .venv .mypy_cache
+	rm -rf build dist *.egg-info .mypy_cache
+
+distclean:
+	rm -rf .venv
