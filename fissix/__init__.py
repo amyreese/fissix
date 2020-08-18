@@ -15,7 +15,7 @@ from appdirs import user_cache_dir
 
 from .pgen2 import driver, grammar, pgen
 
-__version__ = "20.5.1"
+__version__ = "20.8.0"
 __base_version__ = "3.9.0a6+"
 __base_revision__ = "v3.9.0a5-508-g7443d42021"
 
