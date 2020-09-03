@@ -121,8 +121,8 @@ def ListComp(xp, fp, it, test=None):
 
 
 def FromImport(package_name, name_leafs):
-    """ Return an import statement in the form:
-        from package import name_leafs"""
+    """Return an import statement in the form:
+    from package import name_leafs"""
     # XXX: May not handle dotted imports properly (eg, package_name='foo.bar')
     # assert package_name == '.' or '.' not in package_name, "FromImport has "\
     #       "not been tested with dotted package names -- use at your own "\
@@ -268,11 +268,11 @@ pats_built = False
 
 
 def in_special_context(node):
-    """ Returns true if node is in an environment where all that is required
-        of it is being iterable (ie, it doesn't matter if it returns a list
-        or an iterator).
-        See test_map_nochange in test_fixers.py for some examples and tests.
-        """
+    """Returns true if node is in an environment where all that is required
+    of it is being iterable (ie, it doesn't matter if it returns a list
+    or an iterator).
+    See test_map_nochange in test_fixers.py for some examples and tests.
+    """
     global p0, p1, p2, pats_built
     if not pats_built:
         p0 = patcomp.compile_pattern(p0)
@@ -350,10 +350,10 @@ def find_root(node):
 
 
 def does_tree_import(package, name, node):
-    """ Returns true if name is imported from package at the
-        top level of the tree which node belongs to.
-        To cover the case of an import like 'import foo', use
-        None for the package and 'foo' for the name. """
+    """Returns true if name is imported from package at the
+    top level of the tree which node belongs to.
+    To cover the case of an import like 'import foo', use
+    None for the package and 'foo' for the name."""
     binding = find_binding(name, find_root(node), package)
     return bool(binding)
 
@@ -364,8 +364,8 @@ def is_import(node):
 
 
 def touch_import(package, name, node):
-    """ Works like `does_tree_import` but adds an import statement
-        if it was not imported. """
+    """Works like `does_tree_import` but adds an import statement
+    if it was not imported."""
 
     def is_import_stmt(node):
         return (
@@ -419,10 +419,10 @@ _def_syms = {syms.classdef, syms.funcdef}
 
 
 def find_binding(name, node, package=None):
-    """ Returns the node which binds variable name, otherwise None.
-        If optional argument package is supplied, only imports will
-        be returned.
-        See test cases for examples."""
+    """Returns the node which binds variable name, otherwise None.
+    If optional argument package is supplied, only imports will
+    be returned.
+    See test cases for examples."""
     for child in node.children:
         ret = None
         if child.type == syms.for_stmt:
@@ -481,9 +481,9 @@ def _find(name, node):
 
 
 def _is_import_binding(node, name, package=None):
-    """ Will return node if node will import name, or node
-        will import * from package.  None is returned otherwise.
-        See test cases for examples. """
+    """Will return node if node will import name, or node
+    will import * from package.  None is returned otherwise.
+    See test cases for examples."""
 
     if node.type == syms.import_name and not package:
         imp = node.children[1]

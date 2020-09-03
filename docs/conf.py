@@ -29,11 +29,7 @@ author = "John Reese"
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = [
-    "m2r",
-    "sphinx.ext.autodoc",
-    "sphinx.ext.intersphinx",
-]
+extensions = ["m2r", "sphinx.ext.autodoc", "sphinx.ext.intersphinx"]
 
 # Add any paths that contain templates here, relative to this directory.
 templates_path = ["_templates"]
@@ -69,9 +65,7 @@ html_theme_options = {
     "github_repo": "fissix",
     "show_powered_by": False,
     "sidebar_collapse": False,
-    "extra_nav_links": {
-        "Report Issues": "https://github.com/jreese/fissix/issues",
-    },
+    "extra_nav_links": {"Report Issues": "https://github.com/jreese/fissix/issues"},
 }
 
 html_sidebars = {
@@ -81,7 +75,7 @@ html_sidebars = {
         "navigation.html",
         "relations.html",
         "searchbox.html",
-    ],
+    ]
 }
 
 # Add any paths that contain custom static files (such as style sheets) here,

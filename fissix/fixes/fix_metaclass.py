@@ -24,10 +24,10 @@ from ..fixer_util import syms, Node, Leaf
 
 
 def has_metaclass(parent):
-    """ we have to check the cls_node without changing it.
-        There are two possibilities:
-          1)  clsdef => suite => simple_stmt => expr_stmt => Leaf('__meta')
-          2)  clsdef => simple_stmt => expr_stmt => Leaf('__meta')
+    """we have to check the cls_node without changing it.
+    There are two possibilities:
+      1)  clsdef => suite => simple_stmt => expr_stmt => Leaf('__meta')
+      2)  clsdef => simple_stmt => expr_stmt => Leaf('__meta')
     """
     for node in parent.children:
         if node.type == syms.suite:
@@ -42,8 +42,8 @@ def has_metaclass(parent):
 
 
 def fixup_parse_tree(cls_node):
-    """ one-line classes don't get a suite in the parse tree so we add
-        one to normalize the tree
+    """one-line classes don't get a suite in the parse tree so we add
+    one to normalize the tree
     """
     for node in cls_node.children:
         if node.type == syms.suite:
@@ -68,9 +68,9 @@ def fixup_parse_tree(cls_node):
 
 
 def fixup_simple_stmt(parent, i, stmt_node):
-    """ if there is a semi-colon all the parts count as part of the same
-        simple_stmt.  We just want the __metaclass__ part so we move
-        everything after the semi-colon into its own simple_stmt node
+    """if there is a semi-colon all the parts count as part of the same
+    simple_stmt.  We just want the __metaclass__ part so we move
+    everything after the semi-colon into its own simple_stmt node
     """
     for semi_ind, node in enumerate(stmt_node.children):
         if node.type == token.SEMI:  # *sigh*
@@ -119,8 +119,8 @@ def find_metas(cls_node):
 
 
 def fixup_indent(suite):
-    """ If an INDENT is followed by a thing with a prefix then nuke the prefix
-        Otherwise we get in trouble when removing __metaclass__ at suite start
+    """If an INDENT is followed by a thing with a prefix then nuke the prefix
+    Otherwise we get in trouble when removing __metaclass__ at suite start
     """
     kids = suite.children[::-1]
     # find the first indent

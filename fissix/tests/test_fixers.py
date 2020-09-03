@@ -2889,9 +2889,7 @@ class Test_numliterals(FixerTestCase):
 class Test_renames(FixerTestCase):
     fixer = "renames"
 
-    modules = {
-        "sys": ("maxint", "maxsize"),
-    }
+    modules = {"sys": ("maxint", "maxsize")}
 
     def test_import_from(self):
         for mod, (old, new) in list(self.modules.items()):
