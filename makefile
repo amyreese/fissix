@@ -23,6 +23,10 @@ version:
 update: .venv
 	scripts/update.sh
 
+.PHONY: html
+html: .venv
+	.venv/bin/sphinx-build -b html docs html 
+
 release: lint test clean
 	flit publish
 
@@ -37,7 +41,7 @@ test:
 	python -m pytest --verbose tests fissix/tests
 
 clean:
-	rm -rf build dist *.egg-info .mypy_cache
+	rm -rf build dist html *.egg-info .mypy_cache
 
 distclean:
 	rm -rf .venv

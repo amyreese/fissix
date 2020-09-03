@@ -1,4 +1,5 @@
 lib2to3/
+html/
 *.pickle
 
 # Byte-compiled / optimized / DLL files
