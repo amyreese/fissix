@@ -6,8 +6,8 @@
 Fixers
 ------
 
-Each step of transforming code is encapsulated in a fixer.  The command ``2to3
--l`` lists them.  As :ref:`documented above <2to3-using>`, each can be turned on
+Each step of transforming code is encapsulated in a fixer.  The command
+``python -m fissix -l`` lists them.  Each can be turned on
 and off individually.  They are described here in more detail.
 
 

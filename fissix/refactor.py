@@ -45,8 +45,8 @@ class _EveryNode(Exception):
 
 
 def _get_head_types(pat):
-    """ Accepts a pytree Pattern Node and returns a set
-        of the pattern types which will match first. """
+    """Accepts a pytree Pattern Node and returns a set
+    of the pattern types which will match first."""
 
     if isinstance(pat, (pytree.NodePattern, pytree.LeafPattern)):
         # NodePatters must either have no type and no content
@@ -73,8 +73,8 @@ def _get_head_types(pat):
 
 
 def _get_headnode_dict(fixer_list):
-    """ Accepts a list of fixers and returns a dictionary
-        of head node type --> fixer list.  """
+    """Accepts a list of fixers and returns a dictionary
+    of head node type --> fixer list."""
     head_nodes = collections.defaultdict(list)
     every = []
     for fixer in fixer_list:

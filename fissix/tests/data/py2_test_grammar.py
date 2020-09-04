@@ -200,11 +200,14 @@ class GrammarTests(unittest.TestCase):
                 f5.func_code.co_varnames, (".0", "two", "compound", "first")
             )
 
-        def a1(one_arg,):
+        def a1(
+            one_arg,
+        ):
             pass
 
         def a2(
-            two, args,
+            two,
+            args,
         ):
             pass
 
@@ -222,19 +225,26 @@ class GrammarTests(unittest.TestCase):
 
         f1()
         f2(1)
-        f2(1,)
+        f2(
+            1,
+        )
         f3(1, 2)
         f3(
-            1, 2,
+            1,
+            2,
         )
         f4(1, (2, (3, 4)))
         v0()
         v0(1)
-        v0(1,)
+        v0(
+            1,
+        )
         v0(1, 2)
         v0(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
         v1(1)
-        v1(1,)
+        v1(
+            1,
+        )
         v1(1, 2)
         v1(1, 2, 3)
         v1(1, 2, 3, 4, 5, 6, 7, 8, 9, 0)
@@ -923,7 +933,9 @@ hello world
         # Test cases should include: commas with 1 and 2 colons
         d = {}
         d[1] = 1
-        d[1,] = 2
+        d[
+            1,
+        ] = 2
         d[1, 2] = 3
         d[1, 2, 3] = 4
         L = list(d)
