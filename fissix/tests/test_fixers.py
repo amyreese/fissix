@@ -4762,3 +4762,36 @@ class Test_asserts(FixerTestCase):
     def test_unchanged(self):
         self.unchanged("self.assertEqualsOnSaturday")
         self.unchanged("self.assertEqualsOnSaturday(3, 5)")
+
+
+class Test_sorted(FixerTestCase):
+
+    fixer = "sorted"
+
+    def test_sorted(self):
+        import_statement = "from functools import cmp_to_key\n"
+
+        b = "sorted(a_list, cmp_function)"
+        a = import_statement + "sorted(a_list, key=cmp_to_key(cmp_function))"
+        self.check(b, a)
+
+        b = "sorted(a_list, lambda x,y: x-y)"
+        a = import_statement + "sorted(a_list, key=cmp_to_key(lambda x,y: x-y))"
+        self.check(b, a)
+
+        self.unchanged("sorted(a_list, key=key_function, reverse=True)")
+        self.unchanged("sorted([1,2,3])")
+
+    def test_list_sort(self):
+        import_statement = "from functools import cmp_to_key\n"
+
+        b = "a_list.sort(cmp_function)"
+        a = import_statement + "a_list.sort(key=cmp_to_key(cmp_function))"
+        self.check(b, a)
+
+        b = "a_list.sort(lambda x,y: x-y)"
+        a = import_statement + "a_list.sort(key=cmp_to_key(lambda x,y: x-y))"
+        self.check(b, a)
+
+        self.unchanged("a_list.sort()")
+        self.unchanged("a_list.sort(key=key_function, reverse=True)")
