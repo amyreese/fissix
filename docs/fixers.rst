@@ -311,4 +311,8 @@ and off individually.  They are described here in more detail.
    Wraps :func:`zip` usage in a :class:`list` call.  This is disabled when
    ``from future_builtins import zip`` appears.
 
+.. attribute:: sorted
 
+   Wraps the argument :meth:`cmp` in :func:`sorted` by
+   :function:`functools.cmp_to_key` and pass it to :func:`sorted` through
+   the :meth:`key` argument.
