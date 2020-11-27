@@ -9,6 +9,13 @@ Backport of latest lib2to3, with enhancements.
 [![code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 
+Installation
+------------
+
+`pip3 install fissix` or `pip install fissix`, depending on the
+operating system's Python policy.  On Debian ≥11 and derivatives such
+as Ubuntu 21.04, `sudo apt install python3-fissix`.
+
 License
 -------
 
