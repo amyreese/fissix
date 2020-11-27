@@ -27,7 +27,7 @@ import pytest
 # Local imports
 from fissix.pgen2 import driver as pgen2_driver
 from fissix.pgen2 import tokenize
-from ..pgen2.parse import ParseError
+from fissix.pgen2.parse import ParseError
 from fissix.pygram import python_symbols as syms
 
 
