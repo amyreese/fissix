@@ -17,9 +17,9 @@ import sys
 import logging
 
 # Local imports
-from .. import pytree
-from .. import pgen2
-from ..pgen2 import driver
+from fissix import pytree
+from fissix import pgen2
+from fissix.pgen2 import driver
 
 logging.basicConfig()
 
