@@ -25,6 +25,18 @@ def RParen():
     return Leaf(token.RPAR, ")")
 
 
+def LBrace():
+    return Leaf(token.LBRACE, "{")
+
+
+def RBrace():
+    return Leaf(token.RBRACE, "}")
+
+
+def Colon():
+    return Leaf(token.COLON, ":")
+
+
 def Assign(target, source):
     """Build an assignment statement"""
     if not isinstance(target, list):
