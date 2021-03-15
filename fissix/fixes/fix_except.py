@@ -56,8 +56,9 @@ class FixExcept(fixer_base.BaseFix):
         for except_clause, e_suite in find_excepts(try_cleanup):
             if len(except_clause.children) == 4:
                 (E, comma, N) = except_clause.children[1:4]
-                comma.replace(Name("as", prefix=" "))
-                changed = True
+                if comma == ',':
+                    comma.replace(Name("as", prefix=" "))
+                    changed = True
 
                 if N.type != token.NAME:
                     # Generate a new N for the except clause
