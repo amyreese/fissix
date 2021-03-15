@@ -56,7 +56,7 @@ class FixExcept(fixer_base.BaseFix):
         for except_clause, e_suite in find_excepts(try_cleanup):
             if len(except_clause.children) == 4:
                 (E, comma, N) = except_clause.children[1:4]
-                if comma == ',':
+                if ',' in comma.value:
                     comma.replace(Name("as", prefix=" "))
                     changed = True
 
