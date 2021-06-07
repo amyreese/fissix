@@ -13,9 +13,9 @@ from pathlib import Path
 
 from appdirs import user_cache_dir
 
+from .__version__ import __version__
 from .pgen2 import driver, grammar, pgen
 
-from .__version__ import __version__
 __base_version__ = "3.9.0a6+"
 __base_revision__ = "v3.9.0a5-508-g7443d42021"
 

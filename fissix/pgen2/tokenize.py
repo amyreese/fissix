@@ -30,8 +30,8 @@ __credits__ = "GvR, ESR, Tim Peters, Thomas Wouters, Fred Drake, Skip Montanaro"
 
 import string, re
 from codecs import BOM_UTF8, lookup
-from fissix.pgen2.token import *
 
+from .token import *
 from . import token
 
 __all__ = [x for x in dir(token) if x[0] != "_"] + [
