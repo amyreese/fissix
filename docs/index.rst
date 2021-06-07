@@ -7,3 +7,8 @@
     api
     fixers
 
+.. toctree::
+    :hidden:
+    :maxdepth: 1
+
+    changelog
