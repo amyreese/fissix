@@ -5,6 +5,7 @@
 venv: .venv
 
 setup:
+	python -m pip install -U pip
 	python -m pip install -r requirements.txt
 	python -m pip install -r requirements-dev.txt
 	python -m flit install --symlink
@@ -30,9 +31,8 @@ html: .venv
 release: lint test clean
 	flit publish
 
-black:
+format:
 	python -m black fissix tests
-	python -m isort -rc fissix/__init__.py tests/
 
 lint:
 	python -m black --check fissix tests

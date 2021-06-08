@@ -1,1 +1,1 @@
-appdirs
+appdirs==1.4.4

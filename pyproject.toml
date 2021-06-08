@@ -37,3 +37,9 @@ minversion = "6.0"
 xfail_strict=true
 addopts = "--strict-markers --strict-config"
 filterwarnings = ["error"]
+
+[tool.attribution]
+name = "fissix"
+package = "fissix"
+signed_tags = true
+version_file = true
