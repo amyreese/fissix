@@ -908,6 +908,14 @@ class Test_except(FixerTestCase):
                 pass"""
         self.unchanged(s)
 
+    def test_unchanged_4(self):
+        s = """
+            try:
+                pass
+            except Exception as e:
+                pass"""
+        self.unchanged(s)
+
 
 class Test_raise(FixerTestCase):
     fixer = "raise"
