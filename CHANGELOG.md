@@ -1,6 +1,24 @@
 fissix
 ======
 
+v21.11.13
+---------
+
+Bug fix release:
+
+* Fix: except fixer checks against the value of a node (#42, #43)
+* Improved urllib fixer to include `__version__` (#44)
+* Tested against Python 3.9 (#32, #45)
+
+```
+$ git shortlog -s v21.6.6...v21.11.13
+     1	Chris Elion
+     3	David Grant
+     5	John Reese
+     2	Thomas Grainger
+```
+
+
 v21.6.6
 -------
 
@@ -17,7 +35,7 @@ Feature release:
 $ git shortlog -s v20.8.0...v21.6.6
      1	Ashley Whetter
      1	David Grant
-    14	John Reese
+    16	John Reese
      1	Langston Barrett
      5	Larry Huang
      1	Nicholas D Steeves
