@@ -82,6 +82,7 @@ MAPPING = {
                 "FTPHandler",
                 "CacheFTPHandler",
                 "UnknownHandler",
+                "__version__",
             ],
         ),
         ("urllib.error", ["URLError", "HTTPError"]),
