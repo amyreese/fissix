@@ -59,8 +59,9 @@ class FixExcept(fixer_base.BaseFix):
                 and except_clause.children[2].value != "as"
             ):
                 (E, comma, N) = except_clause.children[1:4]
-                comma.replace(Name("as", prefix=" "))
-                changed = True
+                if ',' in comma.value:
+                    comma.replace(Name("as", prefix=" "))
+                    changed = True
 
                 if N.type != token.NAME:
                     # Generate a new N for the except clause
