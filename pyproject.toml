@@ -4,10 +4,10 @@ build-backend = "flit_core.buildapi"
 
 [tool.flit.metadata]
 module = "fissix"
-author = "John Reese"
-author-email = "john@noswap.com"
+author = "Amethyst Reese"
+author-email = "amy@noswap.com"
 description-file = "README.md"
-home-page = "https://github.com/jreese/fissix"
+home-page = "https://github.com/amyreese/fissix"
 requires = ["appdirs"]
 requires-python = ">=3.6"
 classifiers = [

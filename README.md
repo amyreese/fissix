@@ -3,9 +3,9 @@ fissix
 
 Backport of latest lib2to3, with enhancements.
 
-[![build status](https://travis-ci.org/jreese/fissix.svg?branch=master)](https://travis-ci.org/jreese/fissix)
+[![build status](https://travis-ci.org/amyreese/fissix.svg?branch=master)](https://travis-ci.org/amyreese/fissix)
 [![version](https://img.shields.io/pypi/v/fissix.svg)](https://pypi.org/project/fissix)
-[![license](https://img.shields.io/pypi/l/fissix.svg)](https://github.com/jreese/fissix/blob/master/LICENSE)
+[![license](https://img.shields.io/pypi/l/fissix.svg)](https://github.com/amyreese/fissix/blob/master/LICENSE)
 [![code style](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/ambv/black)
 
 

@@ -1,4 +1,4 @@
-# copyright 2018 John Reese
+# copyright 2022 Amethyst Reese
 # Licensed under the PSF license V2
 
 """
