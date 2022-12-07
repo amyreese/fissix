@@ -3404,7 +3404,7 @@ class Test_types(FixerTestCase):
         self.check(b, a)
 
         b = "types.StringTypes"
-        a = "(str,)"
+        a = "six.string_types"
         self.check(b, a)
 
 
