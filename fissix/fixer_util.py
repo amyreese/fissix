@@ -234,6 +234,10 @@ consuming_calls = {
     "sum",
     "min",
     "max",
+}
+
+iterator_calls = {
+    "iter",
     "enumerate",
 }
 

@@ -1526,6 +1526,20 @@ class Test_dict(FixerTestCase):
         a = "sorted(d.keys())"
         self.check(b, a)
 
+    def test_consumed_iterator_of_dict_method(self):
+        a = "sorted(enumerate(d.keys()))"
+        self.unchanged(a)
+
+    def test_nonconsuming_func_of_iterator_of_dict_method(self):
+        b = "f(enumerate(d.keys()))"
+        a = "f(enumerate(list(d.keys())))"
+        self.check(b, a)
+
+    def test_for_loop_over_unconsumed_iterator_of_dict_method(self):
+        b = "for i, x in enumerate(d.keys()): print x"
+        a = "for i, x in enumerate(list(d.keys())): print x"
+        self.check(b, a)
+
 
 class Test_xrange(FixerTestCase):
     fixer = "xrange"
