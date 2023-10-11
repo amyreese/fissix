@@ -97,12 +97,17 @@ class FixDict(fixer_base.BaseFix):
             and self.p1.match(node.parent.parent, results)
             and results["node"] is node
         ):
+            node_consumed = results["func"].value in fixer_util.consuming_calls
+            iterator_created = results["func"].value in fixer_util.iterator_calls
             if isiter:
                 # iter(d.iterkeys()) -> iter(d.keys()), etc.
-                return results["func"].value in iter_exempt
+                return node_consumed or iterator_created
             else:
                 # list(d.keys()) -> list(d.keys()), etc.
-                return results["func"].value in fixer_util.consuming_calls
+                return node_consumed or (
+                    iterator_created
+                    and self.in_special_context(node.parent.parent, isiter)
+                )
         if not isiter:
             return False
         # for ... in d.iterkeys() -> for ... in d.keys(), etc.
