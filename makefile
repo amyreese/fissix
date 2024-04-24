@@ -1,14 +1,13 @@
+EXTRAS:=dev,docs
 .venv:
 	python -m venv .venv
-	source .venv/bin/activate && make setup
+	source .venv/bin/activate && make install
 
 venv: .venv
 
-setup:
+install:
 	python -m pip install -U pip
-	python -m pip install -r requirements.txt
-	python -m pip install -r requirements-dev.txt
-	python -m flit install --symlink
+	python -m pip install -Ue .[dev,docs]
 
 .PHONY: cpython
 cpython:
@@ -26,10 +25,10 @@ update: .venv
 
 .PHONY: html
 html: .venv
-	.venv/bin/sphinx-build -b html docs html 
+	.venv/bin/sphinx-build -ab html docs html 
 
 release: lint test clean
-	flit publish
+	python -m flit publish
 
 format:
 	python -m black fissix tests

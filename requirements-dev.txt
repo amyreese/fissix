@@ -1,7 +1,0 @@
-attribution==1.5.2
-black==21.5b2
-flit==3.2.0
-isort==5.8.0
-pytest==6.0.2
-sphinx==3.5.4
-git+https://github.com/miyakogi/m2r
