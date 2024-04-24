@@ -7,7 +7,7 @@ venv: .venv
 
 install:
 	python -m pip install -U pip
-	python -m pip install -Ue .[dev,docs]
+	python -m pip install -Ue .[$(EXTRAS)]
 
 .PHONY: cpython
 cpython:
