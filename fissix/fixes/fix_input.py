@@ -1,4 +1,5 @@
 """Fixer that changes input(...) into eval(input(...))."""
+
 # Author: Andre Roberge
 
 # Local imports

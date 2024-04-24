@@ -5,6 +5,7 @@ g.throw(E, V)    -> g.throw(E(V))
 g.throw(E, V, T) -> g.throw(E(V).with_traceback(T))
 
 g.throw("foo"[, V[, T]]) will warn about string exceptions."""
+
 # Author: Collin Winter
 
 # Local imports

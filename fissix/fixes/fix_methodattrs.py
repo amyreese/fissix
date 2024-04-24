@@ -1,5 +1,6 @@
 """Fix bound method attributes (method.im_? -> method.__?__).
 """
+
 # Author: Christian Heimes
 
 # Local imports

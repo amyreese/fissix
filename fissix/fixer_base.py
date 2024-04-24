@@ -13,7 +13,6 @@ from .fixer_util import does_tree_import
 
 
 class BaseFix(object):
-
     """Optional base class for fixers.
 
     The subclass name must be FixFooBar where FooBar is the result of

@@ -1,4 +1,5 @@
 """Fixer for __nonzero__ -> __bool__ methods."""
+
 # Author: Collin Winter
 
 # Local imports

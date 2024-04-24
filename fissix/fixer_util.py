@@ -1,4 +1,5 @@
 """Utility functions, node construction macros, etc."""
+
 # Author: Collin Winter
 
 # Local imports

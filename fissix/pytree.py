@@ -34,7 +34,6 @@ def type_repr(type_num):
 
 
 class Base(object):
-
     """
     Abstract base class for Node and Leaf.
 
@@ -212,7 +211,6 @@ class Base(object):
 
 
 class Node(Base):
-
     """Concrete implementation for interior nodes."""
 
     def __init__(self, type, children, context=None, prefix=None, fixers_applied=None):
@@ -324,7 +322,6 @@ class Node(Base):
 
 
 class Leaf(Base):
-
     """Concrete implementation for leaf nodes."""
 
     # Default values for instance variables
@@ -420,7 +417,6 @@ def convert(gr, raw_node):
 
 
 class BasePattern(object):
-
     """
     A pattern is a tree matching pattern.
 
@@ -610,7 +606,6 @@ class NodePattern(BasePattern):
 
 
 class WildcardPattern(BasePattern):
-
     """
     A wildcard pattern can match zero or more nodes.
 

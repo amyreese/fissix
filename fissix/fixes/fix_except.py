@@ -19,6 +19,7 @@ The following cases will be converted:
         except E as t:
             T = t.args
 """
+
 # Author: Collin Winter
 
 # Local imports

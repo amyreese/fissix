@@ -1,5 +1,6 @@
 """Fixer that turns 1L into 1, 0755 into 0o755.
 """
+
 # Copyright 2007 Georg Brandl.
 # Licensed to PSF under a Contributor Agreement.
 
