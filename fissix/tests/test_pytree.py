@@ -25,7 +25,6 @@ except NameError:
 
 
 class TestNodes(support.TestCase):
-
     """Unit tests for nodes (Base, Leaf, Node)."""
 
     def test_instantiate_base(self):
@@ -359,7 +358,6 @@ class TestNodes(support.TestCase):
 
 
 class TestPatterns(support.TestCase):
-
     """Unit tests for tree matching patterns."""
 
     def test_basic_patterns(self):

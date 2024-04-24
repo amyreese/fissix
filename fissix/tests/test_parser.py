@@ -639,7 +639,6 @@ class TestClassDef(GrammarTest):
 
 
 class TestParserIdempotency(support.TestCase):
-
     """A cut-down version of pytree_idempotency.py."""
 
     def test_all_project_files(self):

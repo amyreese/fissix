@@ -8,6 +8,7 @@ This converts ``[x for x in 1, 2]`` to ``[x for x in (1, 2)]``."""
 from .. import fixer_base
 from ..fixer_util import LParen, RParen
 
+
 # XXX This doesn't support nested for loops like [x for x in 1, 2 for x in 1, 2]
 class FixParen(fixer_base.BaseFix):
     BM_compatible = True

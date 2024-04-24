@@ -25,6 +25,7 @@ into
     v = sorted(EXPR)
     foo(v)
 """
+
 # Author: Jacques Frechet, Collin Winter
 
 # Local imports

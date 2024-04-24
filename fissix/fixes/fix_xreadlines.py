@@ -1,6 +1,7 @@
 """Fix "for x in f.xreadlines()" -> "for x in f".
 
 This fixer will also convert g(f.xreadlines) into g(f.__iter__)."""
+
 # Author: Collin Winter
 
 # Local imports

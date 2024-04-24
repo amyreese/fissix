@@ -2,6 +2,7 @@
 
 from __future__ import foo is replaced with an empty line.
 """
+
 # Author: Christian Heimes
 
 # Local imports

@@ -15,6 +15,7 @@
    in all those corner cases.
 
 """
+
 # Author: Jack Diederich
 
 # Local imports

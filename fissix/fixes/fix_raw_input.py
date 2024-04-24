@@ -1,4 +1,5 @@
 """Fixer that changes raw_input(...) into input(...)."""
+
 # Author: Andre Roberge
 
 # Local imports

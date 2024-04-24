@@ -1,4 +1,5 @@
 """Fixer for basestring -> str."""
+
 # Author: Christian Heimes
 
 # Local imports

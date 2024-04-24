@@ -1,4 +1,5 @@
 """Fixer for it.next() -> next(it), per PEP 3114."""
+
 # Author: Collin Winter
 
 # Things that currently aren't covered:
