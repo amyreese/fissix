@@ -17,8 +17,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-        os: [macOS-13, ubuntu-latest, windows-latest]
+        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12", "3.13"]
+        os: [macos-13, macos-14, ubuntu-latest, windows-latest]
 
     steps:
       - name: Checkout
@@ -27,6 +27,7 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
+          allow-prereleases: true
       - name: Install
         run: make EXTRAS=dev install
       - name: Test
