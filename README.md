@@ -30,3 +30,4 @@ Used by
 
 * https://pypi.org/project/bowler/ Safe code refactoring for modern Python projects
 * https://pypi.org/project/modernize/ A hack on top of fissix for modernizing code for hybrid codebases.
+* https://pypi.org/project/nose2pytest/ Helps convert Nose-based tests into pytest-based tests.
