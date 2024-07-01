@@ -26,7 +26,7 @@ dev = [
     "black==24.4.0",
     "flit==3.9.0",
     "isort==5.8.0",
-    "pytest==8.1.1",
+    "pytest==8.2.2",
 ]
 docs = [
     "sphinx==7.3.7",
