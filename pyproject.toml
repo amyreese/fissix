@@ -22,7 +22,7 @@ dependencies = [
 
 [project.optional-dependencies]
 dev = [
-    "attribution==1.7.1",
+    "attribution==1.8.0",
     "black==24.4.0",
     "flit==3.9.0",
     "isort==5.8.0",
