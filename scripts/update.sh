@@ -25,9 +25,9 @@ fi
 git checkout -f base
 git reset --hard origin/base
 
-# update cpython to latest master
+# update cpython to latest 3.12
 git submodule update --init
-git -C cpython checkout -f master
+git -C cpython checkout -f 3.12
 git -C cpython clean -xfd
 
 # copy from cpython
@@ -39,7 +39,7 @@ rsync -av cpython/Lib/lib2to3/ fissix/
 # Stop early if no changes
 git update-index -q --refresh
 if git diff-index --quiet HEAD --; then
-    git checkout -f master
+    git checkout -f main
     finish 0 "DONE: No upstream changes to lib2to3"
 fi
 
@@ -47,8 +47,8 @@ fi
 REV=$(git -C cpython describe)
 git commit -am "Import upstream lib2to3 from $REV"
 
-# cherry-pick this to master branch
-git checkout -f master
+# cherry-pick this to main branch
+git checkout -f main
 if ! git cherry-pick base --no-commit; then
     while ! git update-index --refresh; do
         read -p "Merge conflicts present; resolve then press Enter to continue" choice
@@ -65,4 +65,4 @@ scripts/version.sh
 # Amend formatting and version markers to cherry-pick commit
 git commit -am "Merge upstream lib2to3 from $REV"
 
-finish 0 "Update completed; be sure to push both master and base branches"
+finish 0 "Update completed; be sure to push both main and base branches"

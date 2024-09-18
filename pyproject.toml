@@ -49,7 +49,12 @@ exclude = [
 
 [tool.black]
 # try to remove this after future black updates
-exclude = "tests/data/"
+extend-exclude = '''
+(
+    ^/cpython/
+    | tests/data/
+)
+'''
 
 [tool.pytest.ini_options]
 minversion = "6.0"
