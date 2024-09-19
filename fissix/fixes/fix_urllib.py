@@ -128,6 +128,7 @@ def build_pattern():
 
 
 class FixUrllib(FixImports):
+
     def build_pattern(self):
         return "|".join(build_pattern())
 
