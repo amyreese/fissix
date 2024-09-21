@@ -25,8 +25,9 @@ dev = [
     "attribution==1.7.1",
     "black==24.8.0",
     "flit==3.9.0",
-    "isort==5.8.0",
     "pytest==8.3.3",
+    "ufmt==2.7.3",
+    "usort==1.0.8",
 ]
 docs = [
     "sphinx==7.3.7",
@@ -47,15 +48,6 @@ exclude = [
     "tests/",
 ]
 
-[tool.black]
-# try to remove this after future black updates
-extend-exclude = '''
-(
-    ^/cpython/
-    | tests/data/
-)
-'''
-
 [tool.pytest.ini_options]
 minversion = "6.0"
 xfail_strict=true
@@ -68,3 +60,10 @@ package = "fissix"
 signed_tags = true
 version_file = true
 ignored_authors = ["dependabot", "pyup.io"]
+
+[tool.ufmt]
+excludes = [
+    "^/cpython",
+    "fissix/tests/data/",
+]
+sorter = "skip"

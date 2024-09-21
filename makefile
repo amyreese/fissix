@@ -25,16 +25,16 @@ update: .venv
 
 .PHONY: html
 html: .venv
-	.venv/bin/sphinx-build -ab html docs html 
+	.venv/bin/sphinx-build -ab html docs html
 
 release: lint test clean
 	python -m flit publish
 
 format:
-	python -m black fissix tests
+	python -m ufmt format fissix tests
 
 lint:
-	python -m black --check fissix tests
+	python -m ufmt check fissix tests
 
 test:
 	python -m pytest --verbose tests fissix/tests
