@@ -17,7 +17,7 @@ $ git shortlog -s v21.6.6...v24.4.24
      3	Amethyst Reese
      1	Chris Elion
      3	David Grant
-     5	John Reese
+     5	Amethyst Reese
      2	Thomas Grainger
      4	dependabot[bot]
 ```
@@ -39,7 +39,7 @@ Feature release:
 $ git shortlog -s v20.8.0...v21.6.6
      1	Ashley Whetter
      1	David Grant
-    16	John Reese
+    16	Amethyst Reese
      1	Langston Barrett
      5	Larry Huang
      1	Nicholas D Steeves
@@ -60,7 +60,7 @@ Bugfix release:
 ```text
 $ git shortlog -s v20.5.1...v20.8.0
      1	Ashley Whetter
-     8	John Reese
+     8	Amethyst Reese
      7	Thomas Grainger
 ```
 
@@ -75,7 +75,7 @@ Feature release
 
 ```text
 $ git shortlog -s v19.2b1...v20.5.1
-    19	John Reese
+    19	Amethyst Reese
      1	Thomas Grainger
      1	Tim Hatch
 ```
@@ -91,7 +91,7 @@ Feature release
 
 ```text
 $ git shortlog -s v19.2b1...v20.5.0
-    19	John Reese
+    19	Amethyst Reese
      1	Thomas Grainger
      1	Tim Hatch
 ```
@@ -106,7 +106,7 @@ Update 19.2b1:
 
 ```text
 $ git shortlog -s v19.1b1...v19.2b1
-     4	John Reese
+     4	Amethyst Reese
 ```
 
 
@@ -119,7 +119,7 @@ Beta release 19.1b1:
 
 ```text
 $ git shortlog -s v18.6a6...v19.1b1
-     7	John Reese
+     7	Amethyst Reese
 ```
 
 
@@ -132,7 +132,7 @@ Feature release:
 
 ```text
 $ git shortlog -s v18.6a5...v18.6a6
-     1	John Reese
+     1	Amethyst Reese
 ```
 
 
@@ -145,7 +145,7 @@ Bugfix:
 
 ```text
 $ git shortlog -s v18.6a4...v18.6a5
-     1	John Reese
+     1	Amethyst Reese
 ```
 
 
@@ -158,7 +158,7 @@ Bugfix:
 
 ```text
 $ git shortlog -s v18.6a3...v18.6a4
-     1	John Reese
+     1	Amethyst Reese
 ```
 
 
@@ -169,7 +169,7 @@ Fix MANIFEST
 
 ```text
 $ git shortlog -s v18.6a2...v18.6a3
-     1	John Reese
+     1	Amethyst Reese
 ```
 
 
@@ -182,7 +182,7 @@ Minor release:
 
 ```text
 $ git shortlog -s v18.6a1...v18.6a2
-     2	John Reese
+     2	Amethyst Reese
 ```
 
 
@@ -196,7 +196,7 @@ Feature release:
 
 ```text
 $ git shortlog -s v18.6a0...v18.6a1
-    13	John Reese
+    13	Amethyst Reese
 ```
 
 
@@ -209,7 +209,7 @@ Initial release:
 
 ```text
 $ git shortlog -s v18.6a0
-     5	John Reese
+     5	Amethyst Reese
 ```
 
 [attribution-badge]:
