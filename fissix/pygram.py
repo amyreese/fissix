@@ -17,6 +17,7 @@ _PATTERN_GRAMMAR_FILE = os.path.join(os.path.dirname(__file__), "PatternGrammar.
 
 
 class Symbols(object):
+
     def __init__(self, grammar):
         """Initializer.
 

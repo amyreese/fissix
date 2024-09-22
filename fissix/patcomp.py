@@ -36,6 +36,7 @@ def tokenize_wrapper(input):
 
 
 class PatternCompiler(object):
+
     def __init__(self, grammar_file=None):
         """Initializer.
 

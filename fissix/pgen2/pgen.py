@@ -10,10 +10,11 @@ class PgenGrammar(grammar.Grammar):
 
 
 class ParserGenerator(object):
+
     def __init__(self, filename, stream=None):
         close_stream = None
         if stream is None:
-            stream = open(filename)
+            stream = open(filename, encoding="utf-8")
             close_stream = stream.close
         self.filename = filename
         self.stream = stream
@@ -342,6 +343,7 @@ class ParserGenerator(object):
 
 
 class NFAState(object):
+
     def __init__(self):
         self.arcs = []  # list of (label, NFAState) pairs
 
@@ -352,6 +354,7 @@ class NFAState(object):
 
 
 class DFAState(object):
+
     def __init__(self, nfaset, final):
         assert isinstance(nfaset, dict)
         assert isinstance(next(iter(nfaset)), NFAState)
