@@ -17,7 +17,7 @@ classifiers = [
 ]
 requires-python = ">=3.8"
 dependencies = [
-    "appdirs >= 1.4.4",
+    "platformdirs >= 1",
 ]
 
 [project.optional-dependencies]

@@ -11,7 +11,7 @@ import sys
 import tempfile
 from pathlib import Path
 
-from appdirs import user_cache_dir
+from platformdirs import user_cache_dir
 
 from .__version__ import __version__
 from .pgen2 import driver, grammar, pgen
