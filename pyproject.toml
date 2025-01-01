@@ -25,7 +25,7 @@ dev = [
     "attribution==1.8.0",
     "black==24.8.0",
     "flit==3.9.0",
-    "pytest==8.3.3",
+    "pytest==8.3.4",
     "ufmt==2.7.3",
     "usort==1.0.8.post1",
 ]
