@@ -14,7 +14,6 @@ import unittest
 from fissix import refactor, pygram, fixer_base
 from fissix.pgen2 import token
 
-
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 FIXER_DIR = os.path.join(TEST_DATA_DIR, "fixers")
 

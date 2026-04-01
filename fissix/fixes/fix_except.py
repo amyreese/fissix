@@ -59,7 +59,7 @@ class FixExcept(fixer_base.BaseFix):
                 len(except_clause.children) == 4
                 and except_clause.children[2].value != "as"
             ):
-                (E, comma, N) = except_clause.children[1:4]
+                E, comma, N = except_clause.children[1:4]
                 comma.replace(Name("as", prefix=" "))
                 changed = True
 

@@ -13,7 +13,6 @@ import pytest
 
 from fissix import main
 
-
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 PY2_TEST_MODULE = os.path.join(TEST_DATA_DIR, "py2_test_grammar.py")
 

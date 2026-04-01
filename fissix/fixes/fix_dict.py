@@ -34,7 +34,6 @@ from .. import fixer_base
 from ..fixer_util import Name, Call, Dot
 from .. import fixer_util
 
-
 iter_exempt = fixer_util.consuming_calls | {"iter"}
 
 

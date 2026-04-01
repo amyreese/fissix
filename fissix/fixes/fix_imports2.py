@@ -3,7 +3,6 @@ fix_imports."""
 
 from . import fix_imports
 
-
 MAPPING = {"whichdb": "dbm", "anydbm": "dbm"}
 
 

@@ -17,19 +17,28 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        python-version: ["3.8", "3.9", "3.10", "3.11", "3.12"]
-        os: [macOS-13, ubuntu-latest, windows-latest]
+        python-version: ["3.10", "3.11", "3.12", "3.13", "3.14", "3.15"]
+        os: [macOS-latest, ubuntu-latest, windows-latest]
 
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Set Up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: ${{ matrix.python-version }}
+          allow-prereleases: true
       - name: Install
+        if: matrix.python-version != '3.15'
         run: make EXTRAS=dev install
+      - name: Install (test only)
+        if: matrix.python-version == '3.15'
+        run: |
+          python -m pip install -U pip
+          python -m pip install -Ue .
+          python -m pip install pytest
       - name: Test
         run: make test
       - name: Lint
+        if: matrix.python-version != '3.15'
         run: make lint

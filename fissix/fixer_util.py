@@ -8,7 +8,6 @@ from .pytree import Leaf, Node
 from .pygram import python_symbols as syms
 from . import patcomp
 
-
 ###########################################################
 ### Common node-construction "macros"
 ###########################################################

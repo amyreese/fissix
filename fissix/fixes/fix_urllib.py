@@ -1,6 +1,6 @@
 """Fix changes imports of urllib which are now incompatible.
-   This is rather similar to fix_imports, but because of the more
-   complex nature of the fixing for urllib, it has its own fixer.
+This is rather similar to fix_imports, but because of the more
+complex nature of the fixing for urllib, it has its own fixer.
 """
 
 # Author: Nick Edds
