@@ -17,16 +17,17 @@ __all__ = ["Driver", "load_grammar"]
 
 # Python imports
 import io
-import os
 import logging
+import os
 import pkgutil
 import sys
 
 # Pgen imports
-from . import grammar, parse, token, tokenize, pgen
+from . import grammar, parse, pgen, token, tokenize
 
 
 class Driver(object):
+
     def __init__(self, grammar, convert=None, logger=None):
         self.grammar = grammar
         if logger is None:

@@ -6,10 +6,11 @@
 # Python imports
 import itertools
 
-# Local imports
-from .patcomp import PatternCompiler
 from . import pygram
 from .fixer_util import does_tree_import
+
+# Local imports
+from .patcomp import PatternCompiler
 
 
 class BaseFix(object):

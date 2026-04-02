@@ -28,10 +28,11 @@ each time a new token is found."""
 __author__ = "Ka-Ping Yee <ping@lfw.org>"
 __credits__ = "GvR, ESR, Tim Peters, Thomas Wouters, Fred Drake, Skip Montanaro"
 
-import string, re
+import re
+import string
 from codecs import BOM_UTF8, lookup
+from fissix.pgen2.token import *
 
-from .token import *
 from . import token
 
 __all__ = [x for x in dir(token) if x[0] != "_"] + [
@@ -173,8 +174,8 @@ class StopTokenizing(Exception):
 
 
 def printtoken(type, token, xxx_todo_changeme, xxx_todo_changeme1, line):  # for testing
-    (srow, scol) = xxx_todo_changeme
-    (erow, ecol) = xxx_todo_changeme1
+    srow, scol = xxx_todo_changeme
+    erow, ecol = xxx_todo_changeme1
     print(
         "%d,%d-%d,%d:\t%s\t%s" % (srow, scol, erow, ecol, tok_name[type], repr(token))
     )
@@ -206,6 +207,7 @@ def tokenize_loop(readline, tokeneater):
 
 
 class Untokenizer:
+
     def __init__(self):
         self.tokens = []
         self.prev_row = 1
@@ -592,11 +594,12 @@ def generate_tokens(readline):
                         stashed = tok
                         continue
 
-                    if token == "def":
+                    if token in ("def", "for", "with"):
                         if stashed and stashed[0] == NAME and stashed[1] == "async":
 
-                            async_def = True
-                            async_def_indent = indents[-1]
+                            if token == "def":
+                                async_def = True
+                                async_def_indent = indents[-1]
 
                             yield (
                                 ASYNC,

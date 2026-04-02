@@ -9,9 +9,9 @@ iter(<>), list(<>), tuple(<>), sorted(<>), ...join(<>), or for V in <>:.
 
 # Local imports
 from .. import fixer_base
-from ..pytree import Node
+from ..fixer_util import ArgList, in_special_context, Name
 from ..pygram import python_symbols as syms
-from ..fixer_util import Name, ArgList, in_special_context
+from ..pytree import Node
 
 
 class FixZip(fixer_base.ConditionalFix):

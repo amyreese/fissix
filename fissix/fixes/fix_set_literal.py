@@ -5,7 +5,7 @@ Optional fixer to transform set() calls to set literals.
 # Author: Benjamin Peterson
 
 from fissix import fixer_base, pytree
-from fissix.fixer_util import token, syms
+from fissix.fixer_util import syms, token
 
 
 class FixSetLiteral(fixer_base.BaseFix):

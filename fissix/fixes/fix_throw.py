@@ -9,10 +9,9 @@ g.throw("foo"[, V[, T]]) will warn about string exceptions."""
 # Author: Collin Winter
 
 # Local imports
-from .. import pytree
+from .. import fixer_base, pytree
+from ..fixer_util import ArgList, Attr, Call, is_tuple, Name
 from ..pgen2 import token
-from .. import fixer_base
-from ..fixer_util import Name, Call, ArgList, Attr, is_tuple
 
 
 class FixThrow(fixer_base.BaseFix):

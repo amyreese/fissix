@@ -8,7 +8,7 @@
 # regression test, the filterwarnings() call has been added to
 # regrtest.py.
 
-from test.support import run_unittest, check_syntax_error
+from test.support import check_syntax_error
 import unittest
 import sys
 # testing import *
@@ -28,9 +28,9 @@ class TokenTests(unittest.TestCase):
 
     def testPlainIntegers(self):
         self.assertEquals(type(000), type(0))
-        self.assertEquals(0xFF, 255)
+        self.assertEquals(0xff, 255)
         self.assertEquals(0o377, 255)
-        self.assertEquals(2_147_483_647, 0o17777777777)
+        self.assertEquals(2147483647, 0o17777777777)
         self.assertEquals(0b1001, 9)
         # "0x" is not a valid literal
         self.assertRaises(SyntaxError, eval, "0x")
@@ -39,7 +39,7 @@ class TokenTests(unittest.TestCase):
             self.assertEquals(-2147483647-1, -0o20000000000)
             # XXX -2147483648
             self.assert_(0o37777777777 > 0)
-            self.assert_(0xFFFFFFFF > 0)
+            self.assert_(0xffffffff > 0)
             self.assert_(0b1111111111111111111111111111111 > 0)
             for s in ('2147483648', '0o40000000000', '0x100000000',
                       '0b10000000000000000000000000000000'):
@@ -64,48 +64,48 @@ class TokenTests(unittest.TestCase):
 
     def testLongIntegers(self):
         x = 0
-        x = 0xFFFFFFFFFFFFFFFF
-        x = 0xFFFFFFFFFFFFFFFF
+        x = 0xffffffffffffffff
+        x = 0Xffffffffffffffff
         x = 0o77777777777777777
-        x = 0o77777777777777777
-        x = 123_456_789_012_345_678_901_234_567_890
+        x = 0O77777777777777777
+        x = 123456789012345678901234567890
         x = 0b100000000000000000000000000000000000000000000000000000000000000000000
-        x = 0b111111111111111111111111111111111111111111111111111111111111111111111
+        x = 0B111111111111111111111111111111111111111111111111111111111111111111111
 
     def testUnderscoresInNumbers(self):
         # Integers
-        x = 10
-        x = 123_456_789
-        x = 0xABC_123_4_5
-        x = 0x_ABC_123
-        x = 0b11_01
+        x = 1_0
+        x = 123_456_7_89
+        x = 0xabc_123_4_5
+        x = 0X_abc_123
+        x = 0B11_01
         x = 0b_11_01
         x = 0o45_67
-        x = 0o_45_67
+        x = 0O_45_67
 
         # Floats
-        x = 31.4
-        x = 031.4
-        x = 31.0
-        x = 0.31
-        x = 3.14
-        x = 03.14
-        x = 3e14
-        x = 31e41
-        x = 31e-41
+        x = 3_1.4
+        x = 03_1.4
+        x = 3_1.
+        x = .3_1
+        x = 3.1_4
+        x = 0_3.1_4
+        x = 3e1_4
+        x = 3_1e+4_1
+        x = 3_1E-4_1
 
     def testFloats(self):
         x = 3.14
-        x = 314.0
+        x = 314.
         x = 0.314
         # XXX x = 000.314
-        x = 0.314
+        x = .314
         x = 3e14
-        x = 3e14
+        x = 3E14
         x = 3e-14
-        x = 3e14
-        x = 3.0e14
-        x = 0.3e14
+        x = 3e+14
+        x = 3.e14
+        x = .3e14
         x = 3.1e4
 
     def testStringLiterals(self):
@@ -714,7 +714,7 @@ class GrammarTests(unittest.TestCase):
         s = a[-5:]
         s = a[:-1]
         s = a[-4:-3]
-        # A rough test of SF bug 1333982.  http://python.org/sf/1333982
+        # A rough test of SF bug 1333982.  https://bugs.python.org/issue1333982
         # The testing here is fairly incomplete.
         # Test cases should include: commas with 1 and 2 colons
         d = {}
@@ -952,8 +952,5 @@ class GrammarTests(unittest.TestCase):
         self.assertEqual((6 < 4 if 0 else 2), 2)
 
 
-def test_main():
-    run_unittest(TokenTests, GrammarTests)
-
 if __name__ == '__main__':
-    test_main()
+    unittest.main()

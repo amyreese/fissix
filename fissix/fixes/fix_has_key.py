@@ -30,8 +30,7 @@ CAVEATS:
 """
 
 # Local imports
-from .. import pytree
-from .. import fixer_base
+from .. import fixer_base, pytree
 from ..fixer_util import Name, parenthesize
 
 

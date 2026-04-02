@@ -1,13 +1,13 @@
-"""Fixer that turns 1L into 1, 0755 into 0o755.
-"""
+"""Fixer that turns 1L into 1, 0755 into 0o755."""
+
+from .. import fixer_base
+from ..fixer_util import Number
 
 # Copyright 2007 Georg Brandl.
 # Licensed to PSF under a Contributor Agreement.
 
 # Local imports
 from ..pgen2 import token
-from .. import fixer_base
-from ..fixer_util import Number
 
 
 class FixNumliterals(fixer_base.BaseFix):
@@ -15,25 +15,15 @@ class FixNumliterals(fixer_base.BaseFix):
 
     _accept_type = token.NUMBER
 
-    def is_long(self, node):
-        return node.value[-1] in "Ll"
-
-    def is_octal(self, node):
-        return (
-            node.value.startswith("0")
-            and node.value.isdigit()
-            and len(set(node.value)) > 1
-        )
-
     def match(self, node):
         # Override
-        return self.is_long(node) or self.is_octal(node)
+        return node.value.startswith("0") or node.value[-1] in "Ll"
 
     def transform(self, node, results):
         val = node.value
-        if self.is_long(node):
-            return Number(node.value[:-1], prefix=node.prefix)
-        elif self.is_octal(node):
-            return Number("0o" + node.value[1:], prefix=node.prefix)
+        if val[-1] in "Ll":
+            val = val[:-1]
+        elif val.startswith("0") and val.isdigit() and len(set(val)) > 1:
+            val = "0o" + val[1:]
 
-        return None
+        return Number(val, prefix=node.prefix)

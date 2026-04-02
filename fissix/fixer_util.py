@@ -1,13 +1,13 @@
 """Utility functions, node construction macros, etc."""
 
+from . import patcomp
+
 # Author: Collin Winter
 
 # Local imports
 from .pgen2 import token
-from .pytree import Leaf, Node
 from .pygram import python_symbols as syms
-from . import patcomp
-
+from .pytree import Leaf, Node
 
 ###########################################################
 ### Common node-construction "macros"
@@ -24,18 +24,6 @@ def LParen():
 
 def RParen():
     return Leaf(token.RPAR, ")")
-
-
-def LBrace():
-    return Leaf(token.LBRACE, "{")
-
-
-def RBrace():
-    return Leaf(token.RBRACE, "}")
-
-
-def Colon():
-    return Leaf(token.COLON, ":")
 
 
 def Assign(target, source):
@@ -264,7 +252,7 @@ p0 = """for_stmt< 'for' any 'in' node=any ':' any* >
      """
 p1 = """
 power<
-    ( 'iter' | 'list' | 'tuple' | 'sorted' | 'set' | 'sum' | 'dict' |
+    ( 'iter' | 'list' | 'tuple' | 'sorted' | 'set' | 'sum' |
       'any' | 'all' | 'enumerate' | (any* trailer< '.' 'join' >) )
     trailer< '(' node=any ')' >
     any*
@@ -315,7 +303,7 @@ def is_probably_builtin(node):
         # Assignment.
         return False
     if parent.type == syms.parameters or (
-        parent.type in (syms.typedargslist, syms.argument)
+        parent.type == syms.typedargslist
         and (
             (prev is not None and prev.type == token.COMMA)
             or parent.children[0] is node

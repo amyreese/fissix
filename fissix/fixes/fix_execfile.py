@@ -9,14 +9,14 @@ exec() function.
 
 from .. import fixer_base
 from ..fixer_util import (
-    Comma,
-    Name,
-    Call,
-    LParen,
-    RParen,
-    Dot,
-    Node,
     ArgList,
+    Call,
+    Comma,
+    Dot,
+    LParen,
+    Name,
+    Node,
+    RParen,
     String,
     syms,
 )

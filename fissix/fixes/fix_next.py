@@ -1,5 +1,8 @@
 """Fixer for it.next() -> next(it), per PEP 3114."""
 
+from .. import fixer_base
+from ..fixer_util import Call, find_binding, Name
+
 # Author: Collin Winter
 
 # Things that currently aren't covered:
@@ -9,8 +12,6 @@
 # Local imports
 from ..pgen2 import token
 from ..pygram import python_symbols as syms
-from .. import fixer_base
-from ..fixer_util import Name, Call, find_binding
 
 bind_warning = "Calls to builtin next() possibly shadowed by global binding"
 

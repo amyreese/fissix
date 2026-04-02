@@ -10,9 +10,10 @@ Becomes:
     from . import spam
 """
 
+from os.path import dirname, exists, join, sep
+
 # Local imports
 from .. import fixer_base
-from os.path import dirname, join, exists, sep
 from ..fixer_util import FromImport, syms, token
 
 

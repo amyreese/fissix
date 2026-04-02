@@ -27,9 +27,7 @@ class FixAsserts(BaseFix):
 
     PATTERN = """
               power< any+ trailer< '.' meth=(%s)> any* >
-              """ % "|".join(
-        map(repr, NAMES)
-    )
+              """ % "|".join(map(repr, NAMES))
 
     def transform(self, node, results):
         name = results["meth"][0]

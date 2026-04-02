@@ -2,14 +2,14 @@
 Main program for 2to3.
 """
 
-from __future__ import with_statement, print_function
+from __future__ import print_function, with_statement
 
-import sys
-import os
 import difflib
 import logging
-import shutil
 import optparse
+import os
+import shutil
+import sys
 
 from . import refactor
 
@@ -295,16 +295,13 @@ def main(fixer_pkg, args=None):
     else:
         requested = avail_fixes.union(explicit)
     fixer_names = requested.difference(unwanted_fixes)
-    input_base_dir = os.path.commonprefix(args)
-    if (
-        input_base_dir
-        and not input_base_dir.endswith(os.sep)
-        and not os.path.isdir(input_base_dir)
-    ):
-        # One or more similar names were passed, their directory is the base.
-        # os.path.commonprefix() is ignorant of path elements, this corrects
-        # for that weird API.
-        input_base_dir = os.path.dirname(input_base_dir)
+    if args:
+        input_base_dir = os.path.commonpath(args)
+        if not os.path.isdir(input_base_dir):
+            # args are filenames, use their common parent directory.
+            input_base_dir = os.path.dirname(input_base_dir)
+    else:
+        input_base_dir = ""
     if options.output_dir:
         input_base_dir = input_base_dir.rstrip(os.sep)
         logger.info(

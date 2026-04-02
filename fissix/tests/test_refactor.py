@@ -2,18 +2,17 @@
 Unit tests for refactor.py.
 """
 
-import sys
-import os
 import codecs
 import io
+import os
 import re
-import tempfile
 import shutil
+import sys
+import tempfile
 import unittest
 
-from fissix import refactor, pygram, fixer_base
+from fissix import fixer_base, pygram, refactor
 from fissix.pgen2 import token
-
 
 TEST_DATA_DIR = os.path.join(os.path.dirname(__file__), "data")
 FIXER_DIR = os.path.join(TEST_DATA_DIR, "fixers")
@@ -28,6 +27,7 @@ _2TO3_FIXERS = refactor.get_fixers_from_package("fissix.fixes")
 
 
 class TestRefactoringTool(unittest.TestCase):
+
     def setUp(self):
         sys.path.append(FIXER_DIR)
 
@@ -164,7 +164,9 @@ from __future__ import print_function"""
         self.assertEqual(str(tree), input)
 
     def test_refactor_stdin(self):
+
         class MyRT(refactor.RefactoringTool):
+
             def print_output(self, old_text, new_text, filename, equal):
                 results.extend([old_text, new_text, filename, equal])
 

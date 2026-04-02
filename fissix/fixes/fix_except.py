@@ -23,10 +23,9 @@ The following cases will be converted:
 # Author: Collin Winter
 
 # Local imports
-from .. import pytree
+from .. import fixer_base, pytree
+from ..fixer_util import Assign, Attr, is_list, is_tuple, Name, syms
 from ..pgen2 import token
-from .. import fixer_base
-from ..fixer_util import Assign, Attr, Name, is_tuple, is_list, syms
 
 
 def find_excepts(nodes):
@@ -53,15 +52,10 @@ class FixExcept(fixer_base.BaseFix):
         tail = [n.clone() for n in results["tail"]]
 
         try_cleanup = [ch.clone() for ch in results["cleanup"]]
-        changed = False
         for except_clause, e_suite in find_excepts(try_cleanup):
-            if (
-                len(except_clause.children) == 4
-                and except_clause.children[2].value != "as"
-            ):
-                (E, comma, N) = except_clause.children[1:4]
+            if len(except_clause.children) == 4:
+                E, comma, N = except_clause.children[1:4]
                 comma.replace(Name("as", prefix=" "))
-                changed = True
 
                 if N.type != token.NAME:
                     # Generate a new N for the except clause
@@ -95,9 +89,6 @@ class FixExcept(fixer_base.BaseFix):
                     # No space after a comma is legal; no space after "as",
                     # not so much.
                     N.prefix = " "
-
-        if not changed:
-            return None
 
         # TODO(cwinter) fix this when children becomes a smart list
         children = [c.clone() for c in node.children[:3]] + try_cleanup + tail

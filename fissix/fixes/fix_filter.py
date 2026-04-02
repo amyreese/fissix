@@ -15,9 +15,9 @@ Python 2.6 figure it out.
 
 # Local imports
 from .. import fixer_base
-from ..pytree import Node
+from ..fixer_util import ArgList, in_special_context, ListComp, Name, parenthesize
 from ..pygram import python_symbols as syms
-from ..fixer_util import Name, ArgList, ListComp, in_special_context, parenthesize
+from ..pytree import Node
 
 
 class FixFilter(fixer_base.ConditionalFix):

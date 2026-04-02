@@ -4,9 +4,8 @@
 """Fixer that changes xrange(...) into range(...)."""
 
 # Local imports
-from .. import fixer_base
-from ..fixer_util import Name, Call, consuming_calls
-from .. import patcomp
+from .. import fixer_base, patcomp
+from ..fixer_util import Call, consuming_calls, Name
 
 
 class FixXrange(fixer_base.BaseFix):

@@ -8,18 +8,18 @@ from __future__ import print_function
 
 __author__ = "Guido van Rossum <guido@python.org>"
 
-# Support imports (need to be imported first)
-from . import support
+import logging
 
 # Python imports
 import os
 import sys
-import logging
 
 # Local imports
-from fissix import pytree
-from fissix import pgen2
+from fissix import pgen2, pytree
 from fissix.pgen2 import driver
+
+# Support imports (need to be imported first)
+from . import support
 
 logging.basicConfig()
 

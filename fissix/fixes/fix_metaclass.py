@@ -1,18 +1,18 @@
 """Fixer for __metaclass__ = X -> (metaclass=X) methods.
 
-   The various forms of classef (inherits nothing, inherits once, inherits
-   many) don't parse the same in the CST so we look at ALL classes for
-   a __metaclass__ and if we find one normalize the inherits to all be
-   an arglist.
+The various forms of classef (inherits nothing, inherits once, inherits
+many) don't parse the same in the CST so we look at ALL classes for
+a __metaclass__ and if we find one normalize the inherits to all be
+an arglist.
 
-   For one-liner classes ('class X: pass') there is no indent/dedent so
-   we normalize those into having a suite.
+For one-liner classes ('class X: pass') there is no indent/dedent so
+we normalize those into having a suite.
 
-   Moving the __metaclass__ into the classdef can also cause the class
-   body to be empty so there is some special casing for that as well.
+Moving the __metaclass__ into the classdef can also cause the class
+body to be empty so there is some special casing for that as well.
 
-   This fixer also tries very hard to keep original indenting and spacing
-   in all those corner cases.
+This fixer also tries very hard to keep original indenting and spacing
+in all those corner cases.
 
 """
 
@@ -20,8 +20,8 @@
 
 # Local imports
 from .. import fixer_base
+from ..fixer_util import Leaf, Node, syms
 from ..pygram import token
-from ..fixer_util import syms, Node, Leaf
 
 
 def has_metaclass(parent):
@@ -51,7 +51,7 @@ def fixup_parse_tree(cls_node):
             # already in the preferred format, do nothing
             return
 
-    # !%@#! oneliners have no suite node, we have to fake one up
+    # !%@#! one-liners have no suite node, we have to fake one up
     for i, node in enumerate(cls_node.children):
         if node.type == token.COLON:
             break

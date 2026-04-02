@@ -1,7 +1,6 @@
 from fissix.fixer_base import BaseFix
 from fissix.fixer_util import Name
 
-
 class FixParrot(BaseFix):
     """
     Change functions named 'parrot' to 'cheese'.

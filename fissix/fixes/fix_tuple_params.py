@@ -20,10 +20,9 @@ It will also support lambdas:
 # Author: Collin Winter
 
 # Local imports
-from .. import pytree
-from ..pgen2 import token
-from .. import fixer_base
+from .. import fixer_base, pytree
 from ..fixer_util import Assign, Name, Newline, Number, Subscript, syms
+from ..pgen2 import token
 
 
 def is_docstring(stmt):

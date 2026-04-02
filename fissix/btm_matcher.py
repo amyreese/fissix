@@ -7,8 +7,8 @@ matching. This reduces significantly the number of candidate nodes."""
 
 __author__ = "George Boutsioukis <gboutsioukis@gmail.com>"
 
-import logging
 import itertools
+import logging
 from collections import defaultdict
 
 from . import pytree

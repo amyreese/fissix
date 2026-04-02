@@ -4,9 +4,8 @@
 """Fixer that turns <> into !=."""
 
 # Local imports
-from .. import pytree
+from .. import fixer_base, pytree
 from ..pgen2 import token
-from .. import fixer_base
 
 
 class FixNe(fixer_base.BaseFix):

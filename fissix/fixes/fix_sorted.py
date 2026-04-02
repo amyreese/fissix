@@ -1,17 +1,9 @@
+from itertools import filterfalse
+
 from .. import fixer_base
-from ..fixer_util import Call
-from ..fixer_util import Comma
-from ..fixer_util import KeywordArg
-from ..fixer_util import Name
-from ..fixer_util import Node
-from ..fixer_util import touch_import
+from ..fixer_util import Call, Comma, KeywordArg, Name, Node, touch_import
 from ..pgen2 import token
 from ..pygram import python_symbols as symbols
-
-try:
-    from itertools import filterfalse
-except ImportError:
-    from itertools import ifilterfalse as filterfalse
 
 
 class FixSorted(fixer_base.BaseFix):

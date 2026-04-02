@@ -5,9 +5,8 @@ uses of colons.  It does not touch other uses of whitespace.
 
 """
 
-from .. import pytree
+from .. import fixer_base, pytree
 from ..pgen2 import token
-from .. import fixer_base
 
 
 class FixWsComma(fixer_base.BaseFix):
@@ -25,19 +24,16 @@ class FixWsComma(fixer_base.BaseFix):
     def transform(self, node, results):
         new = node.clone()
         comma = False
-        changed = False
         for child in new.children:
             if child in self.SEPS:
                 prefix = child.prefix
                 if prefix.isspace() and "\n" not in prefix:
                     child.prefix = ""
-                    changed = True
                 comma = True
             else:
                 if comma:
                     prefix = child.prefix
                     if not prefix:
                         child.prefix = " "
-                    changed = True
                 comma = False
-        return new if changed else None
+        return new

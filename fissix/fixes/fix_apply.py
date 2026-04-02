@@ -6,10 +6,9 @@
 This converts apply(func, v, k) into (func)(*v, **k)."""
 
 # Local imports
-from .. import pytree
-from ..pgen2 import token
-from .. import fixer_base
+from .. import fixer_base, pytree
 from ..fixer_util import Call, Comma, parenthesize
+from ..pgen2 import token
 
 
 class FixApply(fixer_base.BaseFix):

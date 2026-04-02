@@ -11,21 +11,22 @@ provides infrastructure to write your own refactoring tool.
 __author__ = "Guido van Rossum <guido@python.org>"
 
 
+import collections
+
 # Python imports
 import io
+import logging
+import operator
 import os
 import pkgutil
 import sys
-import logging
-import operator
-import collections
 from itertools import chain
 
-# Local imports
-from .pgen2 import driver, tokenize, token
+from . import btm_matcher as bm, pygram, pytree
 from .fixer_util import find_root
-from . import pytree, pygram
-from . import btm_matcher as bm
+
+# Local imports
+from .pgen2 import driver, token, tokenize
 
 
 def get_all_fix_names(fixer_pkg, remove_prefix=True):
@@ -691,6 +692,7 @@ class MultiprocessingUnsupported(Exception):
 
 
 class MultiprocessRefactoringTool(RefactoringTool):
+
     def __init__(self, *args, **kwargs):
         super(MultiprocessRefactoringTool, self).__init__(*args, **kwargs)
         self.queue = None

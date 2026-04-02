@@ -11,7 +11,7 @@ exec code in ns1, ns2 -> exec(code, ns1, ns2)
 
 # Local imports
 from .. import fixer_base
-from ..fixer_util import Comma, Name, Call
+from ..fixer_util import Call, Comma, Name
 
 
 class FixExec(fixer_base.BaseFix):

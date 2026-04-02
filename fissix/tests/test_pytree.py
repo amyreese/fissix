@@ -9,10 +9,10 @@ more helpful than printing of (the first line of) the docstring,
 especially when debugging a test.
 """
 
+from fissix import pytree
+
 # Testing imports
 from . import support
-
-from fissix import pytree
 
 try:
     sorted

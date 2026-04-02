@@ -1,13 +1,14 @@
-""" Test suite for the code in fixer_util """
+"""Test suite for the code in fixer_util"""
+
+from fissix import fixer_util
+from fissix.fixer_util import Attr, Call, Comma, Name
+from fissix.pgen2 import token
+
+# Local imports
+from fissix.pytree import Leaf, Node
 
 # Testing imports
 from . import support
-
-# Local imports
-from fissix.pytree import Node, Leaf
-from fissix import fixer_util
-from fissix.fixer_util import Attr, Name, Call, Comma
-from fissix.pgen2 import token
 
 
 def parse(code, strip_levels=0):
@@ -561,6 +562,7 @@ class Test_find_binding(support.TestCase):
 
 
 class Test_touch_import(support.TestCase):
+
     def test_after_docstring(self):
         node = parse('"""foo"""\nbar()')
         fixer_util.touch_import(None, "foo", node)
@@ -588,6 +590,7 @@ class Test_touch_import(support.TestCase):
 
 
 class Test_find_indentation(support.TestCase):
+
     def test_nothing(self):
         fi = fixer_util.find_indentation
         node = parse("node()")

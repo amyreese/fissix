@@ -9,7 +9,7 @@ sys.exc_traceback -> sys.exc_info()[2]
 
 # Local imports
 from .. import fixer_base
-from ..fixer_util import Attr, Call, Name, Number, Subscript, Node, syms
+from ..fixer_util import Attr, Call, Name, Node, Number, Subscript, syms
 
 
 class FixSysExc(fixer_base.BaseFix):
@@ -18,9 +18,7 @@ class FixSysExc(fixer_base.BaseFix):
     BM_compatible = True
     PATTERN = """
               power< 'sys' trailer< dot='.' attribute=(%s) > >
-              """ % "|".join(
-        "'%s'" % e for e in exc_info
-    )
+              """ % "|".join("'%s'" % e for e in exc_info)
 
     def transform(self, node, results):
         sys_attr = results["attribute"][0]

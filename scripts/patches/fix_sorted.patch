@@ -1,0 +1,155 @@
+diff --git a/fissix/fixes/fix_sorted.py b/fissix/fixes/fix_sorted.py
+new file mode 100644
+index 0000000..c82d09a
+--- /dev/null
++++ b/fissix/fixes/fix_sorted.py
+@@ -0,0 +1,97 @@
++from itertools import filterfalse
++
++from .. import fixer_base
++from ..fixer_util import Call, Comma, KeywordArg, Name, Node, touch_import
++from ..pgen2 import token
++from ..pygram import python_symbols as symbols
++
++
++class FixSorted(fixer_base.BaseFix):
++    PATTERN = """
++        power< "sorted" trailer< "(" not arglist ")" > any* >
++        |
++        power< "sorted" trailer< "(" arglist< any "," func_args=any+ > ")" > any* >
++        |
++        power<any* trailer< any* >* trailer<"." "sort" > trailer<"(" arglist< func_args=any+ > ")"> any* >
++        |
++        power<any* trailer< any* >* trailer<"." "sort" > trailer<"(" func_arg=any+ ")"> any* >
++    """
++
++    def _transform_keyword(self, nodes, result):
++        """Transform second and later position argument into keyword argument."""
++        if not nodes:
++            return
++
++        if not isinstance(nodes, list):
++            nodes = [nodes]
++
++        parent = nodes[0].parent
++
++        # transform positional arguments
++        positional_args = list(
++            filterfalse(lambda arg: arg.type in (token.COMMA, symbols.argument), nodes)
++        )
++        template = ["cmp", "key", "reverse"]
++        new_args = []
++        for arg, key in zip(positional_args, template):
++            arg_ = arg.clone()
++            arg_.prefix = ""
++
++            new_arg = KeywordArg(Name(key), arg_)
++            new_arg.prefix = arg.prefix
++            new_args.append(new_arg)
++
++            arg.remove()
++
++        for child in list(parent.children):
++            if child.type == token.COMMA and (
++                child.next_sibling is None or child.next_sibling.type == token.COMMA
++            ):
++                child.remove()
++
++        # update keyword argument list
++        keyword_args = list(filter(lambda arg: arg.type == symbols.argument, nodes))
++        keywords = [arg.children[0].value for arg in keyword_args]
++
++        assert parent.type == symbols.arglist
++        for arg in new_args:
++            if arg.children[0].value not in keywords:
++                if len(parent.children) > 0:
++                    parent.append_child(Comma())
++                parent.append_child(arg)
++
++        # update result mapping
++        return parent.children
++
++    def _transform_cmp(self, nodes, result):
++        """transform argument `cmp` into `key`"""
++        arglist = list(filter(lambda arg: arg.type == symbols.argument, nodes))
++
++        cmp_node = None
++        key_node = None
++        for arg in arglist:
++            if arg.type == symbols.argument:
++                if arg.children[0].value == "cmp":
++                    cmp_node = arg
++                if arg.children[0].value == "key":
++                    key_node = arg
++
++        if cmp_node:
++            if key_node:
++                return  # Do nothing when it have both cmp and key argument
++
++            cmp_node.children[0].value = "key"
++            cmp_node.children[2].replace(
++                Call(Name("cmp_to_key"), args=[cmp_node.children[2].clone()])
++            )
++            touch_import("functools", "cmp_to_key", cmp_node)
++
++    def transform(self, node, result):
++        if result.get("func_arg"):
++            a = Node(symbols.arglist, [r.clone() for r in result["func_arg"]])
++            result["func_arg"][0].replace(a)
++            result["func_args"] = a.children
++
++        if result.get("func_args"):
++            ret = self._transform_keyword(result["func_args"], result)
++            self._transform_cmp(ret, result)
+
+--- a/fissix/tests/test_fixers.py
++++ b/fissix/tests/test_fixers.py
+@@ -5,10 +5,9 @@
+ from itertools import chain
+ from operator import itemgetter
+ 
+-from test.test_lib2to3 import support
+-
+ # Local imports
+ from fissix import fixer_util, pygram
++from . import support
+ 
+ 
+ class FixerTestCase(support.TestCase):
+@@ -4692,3 +4691,36 @@
+     def test_unchanged(self):
+         self.unchanged("self.assertEqualsOnSaturday")
+         self.unchanged("self.assertEqualsOnSaturday(3, 5)")
++
++
++class Test_sorted(FixerTestCase):
++
++    fixer = "sorted"
++
++    def test_sorted(self):
++        import_statement = "from functools import cmp_to_key\n"
++
++        b = "sorted(a_list, cmp_function)"
++        a = import_statement + "sorted(a_list, key=cmp_to_key(cmp_function))"
++        self.check(b, a)
++
++        b = "sorted(a_list, lambda x,y: x-y)"
++        a = import_statement + "sorted(a_list, key=cmp_to_key(lambda x,y: x-y))"
++        self.check(b, a)
++
++        self.unchanged("sorted(a_list, key=key_function, reverse=True)")
++        self.unchanged("sorted([1,2,3])")
++
++    def test_list_sort(self):
++        import_statement = "from functools import cmp_to_key\n"
++
++        b = "a_list.sort(cmp_function)"
++        a = import_statement + "a_list.sort(key=cmp_to_key(cmp_function))"
++        self.check(b, a)
++
++        b = "a_list.sort(lambda x,y: x-y)"
++        a = import_statement + "a_list.sort(key=cmp_to_key(lambda x,y: x-y))"
++        self.check(b, a)
++
++        self.unchanged("a_list.sort()")
++        self.unchanged("a_list.sort(key=key_function, reverse=True)")

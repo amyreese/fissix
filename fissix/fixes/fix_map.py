@@ -19,10 +19,11 @@ substituting None for missing values -- like zip(), it now stops as
 soon as the shortest argument is exhausted.
 """
 
+from .. import fixer_base
+from ..fixer_util import ArgList, Call, in_special_context, ListComp, Name
+
 # Local imports
 from ..pgen2 import token
-from .. import fixer_base
-from ..fixer_util import Name, ArgList, Call, ListComp, in_special_context
 from ..pygram import python_symbols as syms
 from ..pytree import Node
 
