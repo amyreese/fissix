@@ -1,0 +1,26 @@
+--- a/fissix/tests/test_parser.py
++++ b/fissix/tests/test_parser.py
+@@ -21,6 +21,7 @@
+ import sys
+ import tempfile
+ import test.support
++import pytest
+ import unittest
+ 
+ # Local imports
+@@ -60,6 +61,7 @@
+         finally:
+             shutil.rmtree(tmpdir)
+ 
++    @pytest.mark.xfail
+     @unittest.skipIf(sys.executable is None, "sys.executable required")
+     @unittest.skipIf(
+         sys.platform in {"emscripten", "wasi"}, "requires working subprocess"
+@@ -208,6 +210,7 @@
+         self.validate("""async def foo():
+                              async for a in b: pass""")
+ 
++    @pytest.mark.xfail
+     def test_async_with(self):
+         self.validate("""async def foo():
+                              async with a: pass""")

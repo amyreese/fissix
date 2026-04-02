@@ -15,13 +15,13 @@ cpython:
 	git -C cpython checkout -f master
 	git -C cpython clean -xfd
 
-.PHONY: version
-version:
-	scripts/version.sh
-
 .PHONY: update
-update: .venv
-	scripts/update.sh
+update:
+	python scripts/update.py
+
+.PHONY: check-sync
+check-sync:
+	python scripts/update.py --check
 
 .PHONY: html
 html: .venv

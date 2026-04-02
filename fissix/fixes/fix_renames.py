@@ -11,7 +11,9 @@ Fixes:
 from .. import fixer_base
 from ..fixer_util import Name, attr_chain
 
-MAPPING = {"sys": {"maxint": "maxsize"}}
+MAPPING = {
+    "sys": {"maxint": "maxsize"},
+}
 LOOKUP = {}
 
 
@@ -33,17 +35,10 @@ def build_pattern():
             yield """
                   import_from< 'from' module_name=%r 'import'
                       ( attr_name=%r | import_as_name< attr_name=%r 'as' any >) >
-                  """ % (
-                module,
-                old_attr,
-                old_attr,
-            )
+                  """ % (module, old_attr, old_attr)
             yield """
                   power< module_name=%r trailer< '.' attr_name=%r > any* >
-                  """ % (
-                module,
-                old_attr,
-            )
+                  """ % (module, old_attr)
     # yield """bare_name=%s""" % alternates(bare)
 
 

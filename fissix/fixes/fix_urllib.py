@@ -1,6 +1,6 @@
 """Fix changes imports of urllib which are now incompatible.
-   This is rather similar to fix_imports, but because of the more
-   complex nature of the fixing for urllib, it has its own fixer.
+This is rather similar to fix_imports, but because of the more
+complex nature of the fixing for urllib, it has its own fixer.
 """
 
 # Author: Nick Edds
@@ -83,7 +83,6 @@ MAPPING = {
                 "FTPHandler",
                 "CacheFTPHandler",
                 "UnknownHandler",
-                "__version__",
             ],
         ),
         ("urllib.error", ["URLError", "HTTPError"]),
@@ -102,18 +101,11 @@ def build_pattern():
             members = alternates(members)
             yield """import_name< 'import' (module=%r
                                   | dotted_as_names< any* module=%r any* >) >
-                  """ % (
-                old_module,
-                old_module,
-            )
+                  """ % (old_module, old_module)
             yield """import_from< 'from' mod_member=%r 'import'
                        ( member=%s | import_as_name< member=%s 'as' any > |
                          import_as_names< members=any*  >) >
-                  """ % (
-                old_module,
-                members,
-                members,
-            )
+                  """ % (old_module, members, members)
             yield """import_from< 'from' module_star=%r 'import' star='*' >
                   """ % old_module
             yield """import_name< 'import'
@@ -121,13 +113,11 @@ def build_pattern():
                   """ % old_module
             # bare_with_attr has a special significance for FixImports.match().
             yield """power< bare_with_attr=%r trailer< '.' member=%s > any* >
-                  """ % (
-                old_module,
-                members,
-            )
+                  """ % (old_module, members)
 
 
 class FixUrllib(FixImports):
+
     def build_pattern(self):
         return "|".join(build_pattern())
 

@@ -691,6 +691,7 @@ class MultiprocessingUnsupported(Exception):
 
 
 class MultiprocessRefactoringTool(RefactoringTool):
+
     def __init__(self, *args, **kwargs):
         super(MultiprocessRefactoringTool, self).__init__(*args, **kwargs)
         self.queue = None

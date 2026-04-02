@@ -20,7 +20,6 @@ from ..pgen2 import token
 from .. import fixer_base
 from ..fixer_util import Name, Call, Comma, String
 
-
 parend_expr = patcomp.compile_pattern("""atom< '(' [atom|STRING|NAME] ')' >""")
 
 

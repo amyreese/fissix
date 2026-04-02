@@ -1,2 +1,2 @@
 #!/usr/bin/env python
-print "#coding=0"
+print '#coding=0'

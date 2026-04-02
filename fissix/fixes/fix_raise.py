@@ -39,7 +39,6 @@ class FixRaise(fixer_base.BaseFix):
 
     def transform(self, node, results):
         syms = self.syms
-        changed = False
 
         exc = results["exc"].clone()
         if exc.type == token.STRING:
@@ -59,11 +58,8 @@ class FixRaise(fixer_base.BaseFix):
                 # exc.children[1].children[0] is the first element of the tuple
                 exc = exc.children[1].children[0].clone()
             exc.prefix = " "
-            changed = True
 
         if "val" not in results:
-            if not changed:
-                return None
             # One-argument raise
             new = pytree.Node(syms.raise_stmt, [Name("raise"), exc])
             new.prefix = node.prefix

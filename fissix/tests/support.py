@@ -9,12 +9,14 @@ import os.path
 from textwrap import dedent
 
 # Local imports
+import fissix
 from fissix import pytree, refactor
 from fissix.pgen2 import driver as pgen2_driver
 
+lib2to3_dir = os.path.dirname(fissix.__file__)
 test_dir = os.path.dirname(__file__)
 proj_dir = os.path.normpath(os.path.join(test_dir, ".."))
-grammar_path = os.path.join(test_dir, "..", "Grammar.txt")
+grammar_path = os.path.join(lib2to3_dir, "Grammar.txt")
 grammar = pgen2_driver.load_grammar(grammar_path)
 grammar_no_print_statement = pgen2_driver.load_grammar(grammar_path)
 del grammar_no_print_statement.keywords["print"]
@@ -54,11 +56,21 @@ def get_refactorer(fixer_pkg="fissix", fixers=None, options=None):
     return refactor.RefactoringTool(fixers, options, explicit=True)
 
 
-def all_project_files():
-    for dirpath, dirnames, filenames in os.walk(proj_dir):
+def _all_project_files(root, files):
+    for dirpath, dirnames, filenames in os.walk(root):
         for filename in filenames:
-            if filename.endswith(".py"):
-                yield os.path.join(dirpath, filename)
+            if not filename.endswith(".py"):
+                continue
+            files.append(os.path.join(dirpath, filename))
+
+
+def all_project_files():
+    files = []
+    _all_project_files(lib2to3_dir, files)
+    _all_project_files(test_dir, files)
+    # Sort to get more reproducible tests
+    files.sort()
+    return files
 
 
 TestCase = unittest.TestCase

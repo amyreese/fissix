@@ -1,4 +1,4 @@
-""" Test suite for the code in fixer_util """
+"""Test suite for the code in fixer_util"""
 
 # Testing imports
 from . import support
@@ -561,6 +561,7 @@ class Test_find_binding(support.TestCase):
 
 
 class Test_touch_import(support.TestCase):
+
     def test_after_docstring(self):
         node = parse('"""foo"""\nbar()')
         fixer_util.touch_import(None, "foo", node)
@@ -588,6 +589,7 @@ class Test_touch_import(support.TestCase):
 
 
 class Test_find_indentation(support.TestCase):
+
     def test_nothing(self):
         fi = fixer_util.find_indentation
         node = parse("node()")

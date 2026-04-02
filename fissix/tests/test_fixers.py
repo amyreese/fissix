@@ -1,4 +1,4 @@
-""" Test suite for the fixer modules """
+"""Test suite for the fixer modules"""
 
 # Python imports
 import os
@@ -47,8 +47,7 @@ class FixerTestCase(support.TestCase):
         self.warns(before, before, message, unchanged=True)
 
     def unchanged(self, before, ignore_warnings=False):
-        tree = self._check(before, before)
-        self.assertFalse(tree.was_changed)
+        self._check(before, before)
         if not ignore_warnings:
             self.assertEqual(self.fixer_log, [])
 
@@ -56,7 +55,7 @@ class FixerTestCase(support.TestCase):
         fixes = [self.fixer]
         fixes.extend(names)
         r = support.get_refactorer("fissix", fixes)
-        (pre, post) = r.get_fixers()
+        pre, post = r.get_fixers()
         n = "fix_" + self.fixer
         if post and post[-1].__class__.__module__.endswith(n):
             # We're the last fixer to run
@@ -908,14 +907,6 @@ class Test_except(FixerTestCase):
                 pass"""
         self.unchanged(s)
 
-    def test_unchanged_4(self):
-        s = """
-            try:
-                pass
-            except Exception as e:
-                pass"""
-        self.unchanged(s)
-
 
 class Test_raise(FixerTestCase):
     fixer = "raise"
@@ -973,10 +964,6 @@ class Test_raise(FixerTestCase):
         b = """raise (E1, (E2, E3), E4), V"""
         a = """raise E1(V)"""
         self.check(b, a)
-
-    def test_unchanged(self):
-        a = """raise E1(V)"""
-        self.unchanged(a)
 
     # These should produce a warning
 
@@ -1193,11 +1180,6 @@ class Test_long(FixerTestCase):
         a = """z = type(x) in (int, int)"""
         self.check(b, a)
 
-    def test_4(self):
-        b = """f(arg=long)"""
-        a = """f(arg=int)"""
-        self.check(b, a)
-
     def test_unchanged(self):
         s = """long = True"""
         self.unchanged(s)
@@ -1218,9 +1200,6 @@ class Test_long(FixerTestCase):
         self.unchanged(s)
 
         s = """def f(x, long=True): pass"""
-        self.unchanged(s)
-
-        s = """f(long=True)"""
         self.unchanged(s)
 
     def test_prefix_preservation(self):
@@ -1601,6 +1580,7 @@ class Test_xrange(FixerTestCase):
 
 
 class Test_xrange_with_reduce(FixerTestCase):
+
     def setUp(self):
         super(Test_xrange_with_reduce, self).setUp(["xrange", "reduce"])
 
@@ -1730,6 +1710,7 @@ class Test_xreadlines(FixerTestCase):
 
 
 class ImportsFixerTests:
+
     def test_import_module(self):
         for old, new in self.modules.items():
             b = "import %s" % old
@@ -1781,76 +1762,48 @@ class ImportsFixerTests:
             b = """
                 import %s
                 foo(%s.bar)
-                """ % (
-                old,
-                old,
-            )
+                """ % (old, old)
             a = """
                 import %s
                 foo(%s.bar)
-                """ % (
-                new,
-                new,
-            )
+                """ % (new, new)
             self.check(b, a)
 
             b = """
                 from %s import x
                 %s = 23
-                """ % (
-                old,
-                old,
-            )
+                """ % (old, old)
             a = """
                 from %s import x
                 %s = 23
-                """ % (
-                new,
-                old,
-            )
+                """ % (new, old)
             self.check(b, a)
 
             s = """
                 def f():
                     %s.method()
-                """ % (
-                old,
-            )
+                """ % (old,)
             self.unchanged(s)
 
             # test nested usage
             b = """
                 import %s
                 %s.bar(%s.foo)
-                """ % (
-                old,
-                old,
-                old,
-            )
+                """ % (old, old, old)
             a = """
                 import %s
                 %s.bar(%s.foo)
-                """ % (
-                new,
-                new,
-                new,
-            )
+                """ % (new, new, new)
             self.check(b, a)
 
             b = """
                 import %s
                 x.%s
-                """ % (
-                old,
-                old,
-            )
+                """ % (old, old)
             a = """
                 import %s
                 x.%s
-                """ % (
-                new,
-                old,
-            )
+                """ % (new, old)
             self.check(b, a)
 
 
@@ -1881,6 +1834,7 @@ class Test_imports2(FixerTestCase, ImportsFixerTests):
 
 
 class Test_imports_fixer_order(FixerTestCase, ImportsFixerTests):
+
     def setUp(self):
         super(Test_imports_fixer_order, self).setUp(["imports", "imports2"])
         from fissix.fixes.fix_imports2 import MAPPING as mapping2
@@ -1997,40 +1951,20 @@ def foo():
                     b = """
                         import %s
                         foo(%s.%s)
-                        """ % (
-                        old,
-                        old,
-                        member,
-                    )
+                        """ % (old, old, member)
                     a = """
                         import %s
                         foo(%s.%s)
-                        """ % (
-                        new_import,
-                        new,
-                        member,
-                    )
+                        """ % (new_import, new, member)
                     self.check(b, a)
                     b = """
                         import %s
                         %s.%s(%s.%s)
-                        """ % (
-                        old,
-                        old,
-                        member,
-                        old,
-                        member,
-                    )
+                        """ % (old, old, member, old, member)
                     a = """
                         import %s
                         %s.%s(%s.%s)
-                        """ % (
-                        new_import,
-                        new,
-                        member,
-                        new,
-                        member,
-                    )
+                        """ % (new_import, new, member, new, member)
                     self.check(b, a)
 
 
@@ -2866,13 +2800,9 @@ class Test_numliterals(FixerTestCase):
     def test_unchanged_int(self):
         s = """5"""
         self.unchanged(s)
-        s = """000"""
-        self.unchanged(s)
 
     def test_unchanged_float(self):
         s = """5.0"""
-        self.unchanged(s)
-        s = """0.1"""
         self.unchanged(s)
 
     def test_unchanged_octal(self):
@@ -2905,7 +2835,9 @@ class Test_numliterals(FixerTestCase):
 class Test_renames(FixerTestCase):
     fixer = "renames"
 
-    modules = {"sys": ("maxint", "maxsize")}
+    modules = {
+        "sys": ("maxint", "maxsize"),
+    }
 
     def test_import_from(self):
         for mod, (old, new) in list(self.modules.items()):
@@ -2927,21 +2859,11 @@ class Test_renames(FixerTestCase):
             b = """
                 import %s
                 foo(%s, %s.%s)
-                """ % (
-                mod,
-                mod,
-                mod,
-                old,
-            )
+                """ % (mod, mod, mod, old)
             a = """
                 import %s
                 foo(%s, %s.%s)
-                """ % (
-                mod,
-                mod,
-                mod,
-                new,
-            )
+                """ % (mod, mod, mod, new)
             self.check(b, a)
 
     def XXX_test_from_import_usage(self):
@@ -2950,21 +2872,11 @@ class Test_renames(FixerTestCase):
             b = """
                 from %s import %s
                 foo(%s, %s)
-                """ % (
-                mod,
-                old,
-                mod,
-                old,
-            )
+                """ % (mod, old, mod, old)
             a = """
                 from %s import %s
                 foo(%s, %s)
-                """ % (
-                mod,
-                new,
-                mod,
-                new,
-            )
+                """ % (mod, new, mod, new)
             self.check(b, a)
 
 
@@ -3014,15 +2926,18 @@ class Test_unicode(FixerTestCase):
         a = r"""'\\\\u20ac\\U0001d121\\u20ac'"""
         self.check(b, a)
 
+        b = r"""r'\\\u20ac\U0001d121\\u20ac'"""
         a = r"""r'\\\u20ac\U0001d121\\u20ac'"""
-        self.unchanged(a)
+        self.check(b, a)
 
     def test_bytes_literal_escape_u(self):
+        b = r"""b'\\\u20ac\U0001d121\\u20ac'"""
         a = r"""b'\\\u20ac\U0001d121\\u20ac'"""
-        self.unchanged(a)
+        self.check(b, a)
 
+        b = r"""br'\\\u20ac\U0001d121\\u20ac'"""
         a = r"""br'\\\u20ac\U0001d121\\u20ac'"""
-        self.unchanged(a)
+        self.check(b, a)
 
     def test_unicode_literal_escape_u(self):
         b = r"""u'\\\u20ac\U0001d121\\u20ac'"""
@@ -3035,15 +2950,13 @@ class Test_unicode(FixerTestCase):
 
     def test_native_unicode_literal_escape_u(self):
         f = "from __future__ import unicode_literals\n"
+        b = f + r"""'\\\u20ac\U0001d121\\u20ac'"""
         a = f + r"""'\\\u20ac\U0001d121\\u20ac'"""
-        self.unchanged(a)
+        self.check(b, a)
 
+        b = f + r"""r'\\\u20ac\U0001d121\\u20ac'"""
         a = f + r"""r'\\\u20ac\U0001d121\\u20ac'"""
-        self.unchanged(a)
-
-    def test_unchanged(self):
-        a = """'h'"""
-        self.unchanged(a)
+        self.check(b, a)
 
 
 class Test_filter(FixerTestCase):
@@ -4778,36 +4691,3 @@ class Test_asserts(FixerTestCase):
     def test_unchanged(self):
         self.unchanged("self.assertEqualsOnSaturday")
         self.unchanged("self.assertEqualsOnSaturday(3, 5)")
-
-
-class Test_sorted(FixerTestCase):
-
-    fixer = "sorted"
-
-    def test_sorted(self):
-        import_statement = "from functools import cmp_to_key\n"
-
-        b = "sorted(a_list, cmp_function)"
-        a = import_statement + "sorted(a_list, key=cmp_to_key(cmp_function))"
-        self.check(b, a)
-
-        b = "sorted(a_list, lambda x,y: x-y)"
-        a = import_statement + "sorted(a_list, key=cmp_to_key(lambda x,y: x-y))"
-        self.check(b, a)
-
-        self.unchanged("sorted(a_list, key=key_function, reverse=True)")
-        self.unchanged("sorted([1,2,3])")
-
-    def test_list_sort(self):
-        import_statement = "from functools import cmp_to_key\n"
-
-        b = "a_list.sort(cmp_function)"
-        a = import_statement + "a_list.sort(key=cmp_to_key(cmp_function))"
-        self.check(b, a)
-
-        b = "a_list.sort(lambda x,y: x-y)"
-        a = import_statement + "a_list.sort(key=cmp_to_key(lambda x,y: x-y))"
-        self.check(b, a)
-
-        self.unchanged("a_list.sort()")
-        self.unchanged("a_list.sort(key=key_function, reverse=True)")

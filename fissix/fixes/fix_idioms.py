@@ -76,12 +76,7 @@ class FixIdioms(fixer_base.BaseFix):
             >
             next=any*
         >
-    """ % (
-        TYPE,
-        CMP,
-        CMP,
-        TYPE,
-    )
+    """ % (TYPE, CMP, CMP, TYPE)
 
     def match(self, node):
         r = super(FixIdioms, self).match(node)

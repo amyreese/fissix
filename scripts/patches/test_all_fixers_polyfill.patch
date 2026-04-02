@@ -1,0 +1,32 @@
+diff --git a/fissix/tests/test_all_fixers.py b/fissix/tests/test_all_fixers.py
+index 7792c74..3b39bd3 100644
+--- a/fissix/tests/test_all_fixers.py
++++ b/fissix/tests/test_all_fixers.py
+@@ -7,10 +7,27 @@ running time.
+ # Author: Collin Winter
+ 
+ # Python imports
++import contextlib
+ import os.path
++import sys
+ import test.support
+ import unittest
+ 
++# test.support.infinite_recursion was added in Python 3.11 (bpo-46542).
++# Polyfill it for older versions so the test suite works on 3.10.
++if not hasattr(test.support, "infinite_recursion"):
++
++    @contextlib.contextmanager
++    def _infinite_recursion(limit=75):
++        old = sys.getrecursionlimit()
++        sys.setrecursionlimit(limit)
++        try:
++            yield
++        finally:
++            sys.setrecursionlimit(old)
++
++    test.support.infinite_recursion = _infinite_recursion
++
+ # Local imports
+ from . import support
+ 

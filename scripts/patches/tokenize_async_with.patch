@@ -1,0 +1,11 @@
+--- a/fissix/pgen2/tokenize.py
++++ b/fissix/pgen2/tokenize.py
+@@ -593,7 +593,7 @@
+                         stashed = tok
+                         continue
+ 
+-                    if token in ("def", "for"):
++                    if token in ("def", "for", "with"):
+                         if stashed and stashed[0] == NAME and stashed[1] == "async":
+ 
+                             if token == "def":

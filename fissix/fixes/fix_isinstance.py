@@ -32,10 +32,8 @@ class FixIsinstance(fixer_base.BaseFix):
         args = testlist.children
         new_args = []
         iterator = enumerate(args)
-        changed = False
         for idx, arg in iterator:
             if arg.type == token.NAME and arg.value in names_inserted:
-                changed = True
                 if idx < len(args) - 1 and args[idx + 1].type == token.COMMA:
                     next(iterator)
                     continue
@@ -44,13 +42,11 @@ class FixIsinstance(fixer_base.BaseFix):
                 if arg.type == token.NAME:
                     names_inserted.add(arg.value)
         if new_args and new_args[-1].type == token.COMMA:
-            changed = True
             del new_args[-1]
-        atom = testlist.parent
-        if len(new_args) == 1 and new_args[0].prefix != atom.prefix:
-            changed = True
+        if len(new_args) == 1:
+            atom = testlist.parent
             new_args[0].prefix = atom.prefix
             atom.replace(new_args[0])
-        if changed:
+        else:
             args[:] = new_args
             node.changed()
