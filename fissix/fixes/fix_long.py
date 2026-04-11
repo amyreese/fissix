@@ -1,8 +1,7 @@
 # Copyright 2006 Google, Inc. All Rights Reserved.
 # Licensed to PSF under a Contributor Agreement.
 
-"""Fixer that turns 'long' into 'int' everywhere.
-"""
+"""Fixer that turns 'long' into 'int' everywhere."""
 
 # Local imports
 from fissix import fixer_base
