@@ -1,4 +1,4 @@
-""" Test suite for the fixer modules """
+"""Test suite for the fixer modules"""
 
 # Python imports
 import os

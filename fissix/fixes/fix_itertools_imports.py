@@ -1,4 +1,4 @@
-""" Fixer for imports of itertools.(imap|ifilter|izip|ifilterfalse) """
+"""Fixer for imports of itertools.(imap|ifilter|izip|ifilterfalse)"""
 
 # Local imports
 from fissix import fixer_base

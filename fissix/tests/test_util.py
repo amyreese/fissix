@@ -1,4 +1,4 @@
-""" Test suite for the code in fixer_util """
+"""Test suite for the code in fixer_util"""
 
 # Testing imports
 from . import support
