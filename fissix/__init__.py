@@ -7,7 +7,6 @@ Monkeypatches to override default behavior of lib2to3.
 
 import logging
 import os
-import sys
 import tempfile
 from pathlib import Path
 
@@ -16,8 +15,8 @@ from platformdirs import user_cache_dir
 from .__version__ import __version__
 from .pgen2 import driver, grammar, pgen
 
-__base_version__ = "3.9.0a6+"
-__base_revision__ = "v3.9.0a5-508-g7443d42021"
+__base_version__ = "3.12.6+"
+__base_revision__ = "v3.12.2-989-gfcfe78664bf"
 
 CACHE_DIR = Path(user_cache_dir("fissix", version=__version__))
 

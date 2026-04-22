@@ -502,6 +502,7 @@ class BasePattern(object):
 
 
 class LeafPattern(BasePattern):
+
     def __init__(self, type=None, content=None, name=None):
         """
         Initializer.  Takes optional type, content, and name.
@@ -731,8 +732,8 @@ class WildcardPattern(BasePattern):
                         r[self.name] = nodes[:count]
                     yield count, r
             except RuntimeError:
-                # We fall back to the iterative pattern matching scheme if the recursive
-                # scheme hits the recursion limit.
+                # Fall back to the iterative pattern matching scheme if the
+                # recursive scheme hits the recursion limit (RecursionError).
                 for count, r in self._iterative_matches(nodes):
                     if self.name:
                         r[self.name] = nodes[:count]
@@ -802,6 +803,7 @@ class WildcardPattern(BasePattern):
 
 
 class NegatedPattern(BasePattern):
+
     def __init__(self, content=None):
         """
         Initializer.
