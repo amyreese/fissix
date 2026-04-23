@@ -202,6 +202,7 @@ class RefactoringTool(object):
         self.pre_order, self.post_order = self.get_fixers()
 
         self.files = []  # List of files that were or should be modified
+        self.modified_files = []
 
         self.BM = bm.BottomMatcher()
         self.bmi_pre_order = []  # Bottom Matcher incompatible fixers
@@ -507,6 +508,8 @@ class RefactoringTool(object):
             if old_text is None:
                 return
         equal = old_text == new_text
+        if not equal:
+            self.modified_files.append(filename)
         self.print_output(old_text, new_text, filename, equal)
         if equal:
             self.log_debug("No changes to %s", filename)
@@ -625,11 +628,11 @@ class RefactoringTool(object):
             were = "were"
         else:
             were = "need to be"
-        if not self.files:
+        if not self.modified_files:
             self.log_message("No files %s modified.", were)
         else:
             self.log_message("Files that %s modified:", were)
-            for file in self.files:
+            for file in self.modified_files:
                 self.log_message(file)
         if self.fixer_log:
             self.log_message("Warnings/messages while refactoring:")
