@@ -23,7 +23,7 @@ dependencies = [
 [project.optional-dependencies]
 dev = [
     "attribution==1.8.0",
-    "black==25.11.0",
+    "black==26.5.1",
     "flit==3.12.0",
     "pytest==8.4.2",
     "ufmt==2.8.0",
