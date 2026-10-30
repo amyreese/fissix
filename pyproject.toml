@@ -20,18 +20,15 @@ dependencies = [
     "platformdirs >= 4.4.0",
 ]
 
-[project.optional-dependencies]
+[dependency-groups]
 dev = [
     "attribution==1.8.0",
     "black==25.11.0",
-    "flit==3.12.0",
-    "pytest==8.4.2",
+    "pytest",
     "ufmt==2.8.0",
     "usort==1.0.8.post1",
-]
-docs = [
-    "sphinx==8.0.2",
-    "sphinx-mdinclude==0.6.2",
+    "sphinx",
+    "sphinx-mdinclude",
 ]
 
 [project.urls]
