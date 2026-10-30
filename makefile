@@ -1,14 +1,3 @@
-EXTRAS:=dev,docs
-.venv:
-	python -m venv .venv
-	source .venv/bin/activate && make install
-
-venv: .venv
-
-install:
-	python -m pip install -U pip
-	python -m pip install -Ue .[$(EXTRAS)]
-
 .PHONY: cpython
 cpython:
 	git submodule update --init
@@ -24,20 +13,17 @@ update: .venv
 	scripts/update.sh
 
 .PHONY: html
-html: .venv
-	.venv/bin/sphinx-build -ab html docs html
-
-release: lint test clean
-	python -m flit publish
+html:
+	uv run --frozen sphinx-build -ab html docs html
 
 format:
-	python -m ufmt format fissix tests
+	uv run --frozen ufmt format fissix tests
 
 lint:
-	python -m ufmt check fissix tests
+	uv run --frozen ufmt check fissix tests
 
 test:
-	python -m pytest --verbose tests fissix/tests
+	uv run --frozen pytest --verbose tests fissix/tests
 
 clean:
 	rm -rf build dist html *.egg-info .mypy_cache
